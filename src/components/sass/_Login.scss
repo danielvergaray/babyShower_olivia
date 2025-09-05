@@ -1,0 +1,27 @@
+@media (min-width: 847px) {
+  .seccion-login {
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    .login-contenido {
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+
+      form {
+        display: flex;
+        flex-direction: column;
+        margin: 5px 0;
+        input {
+          height: max-content;
+          margin: 5px 0;
+          width: 200px;
+        }
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

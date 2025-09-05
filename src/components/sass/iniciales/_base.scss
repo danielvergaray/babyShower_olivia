@@ -1,0 +1,140 @@
+@import "../reutilizables/colors";
+@import "../reutilizables/Tipografias";
+
+body {
+  font-family: "give-away";
+  text-transform: uppercase;
+  color: $Principal-azul;
+  p {
+    text-align: center;
+    font-size: 35px;
+    margin: 0;
+    color: $Principal-azul;
+  }
+  button {
+    padding: 20px 30px;
+    border: none;
+    font-weight: 100;
+    color: $Principal-blanco;
+    font-size: 0.8rem;
+    border-radius: 9999px;
+    background-color: $Principal-azul;
+    text-transform: uppercase;
+    font-family: "abygaer";
+  }
+  a {
+    button {
+      font-size: 25px;
+    }
+  }
+
+  .seccion-contador,
+  .sobreEvento-icono,
+  .sobreEvento-lugar-ubicacion,
+  .seccion-regalos {
+    img {
+      width: 60px;
+      margin: auto;
+    }
+  }
+
+  .seccion-sobreEvento,
+  .seccion-contador,
+  .seccion-carousel,
+  .seccion-regalos,
+  .seccion-formulario {
+    padding: 70px 4vw;
+  }
+
+  .hero-section,
+  .seccion-carousel,
+  .seccion-formulario {
+    background-color: $Principal-blanco;
+  }
+
+  .seccion-regalos,
+  .seccion-sobreEvento {
+    background-color: $Principal-beige;
+    .titulo-imagen {
+      text-align: left;
+      img {
+        width: 386px;
+      }
+    }
+  }
+
+  .hero-section,
+  .seccion-contador,
+  .seccion-carousel {
+    background-color: $Principal-blanco;
+  }
+
+  /*  @keyframes ZoomIn {
+        0% {
+          opacity: 1;
+          transform: scale(0.95);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(0.95);
+        }
+      } */
+
+  .link-administrador {
+    a {
+      text-decoration: none;
+      p {
+        margin: 0;
+        text-align: right;
+      }
+    }
+  }
+}
+
+@media (min-width: 847px) {
+  body {
+    .seccion-contador,
+    .seccion-carousel {
+      .titulo-imagen {
+        width: 80%;
+        margin: auto;
+        text-align: center;
+        img {
+          width: 15%;
+        }
+      }
+    }
+    .seccion-formulario {
+      .titulo-imagen {
+        width: 40%;
+        margin: auto;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .seccion-sobreEvento,
+    .seccion-contador,
+    .seccion-carousel,
+    .seccion-regalos,
+    .seccion-formulario {
+      button {
+        font-size: 1.25rem;
+
+        a {
+          color: $Principal-blanco;
+        }
+      }
+      p {
+        line-height: 35px;
+      }
+    }
+  }
+}

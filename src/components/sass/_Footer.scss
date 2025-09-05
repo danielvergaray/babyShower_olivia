@@ -1,0 +1,31 @@
+@media (min-width: 847px) {
+  .seccion-footer {
+    text-align: center;
+    background-color: $Secundario-naranja;
+    padding: 40px 10px;
+    .titulo-imagen {
+      width: 40%;
+      margin: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 846px) {
+  .seccion-footer {
+    text-align: center;
+    background-color: $Secundario-naranja;
+    padding: 40px 10px;
+    .titulo-imagen {
+      width: 80%;
+      margin: auto;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@media (min-width: 847px) {
+  .seccion-administrador {
+    margin: 80px;
+    .administrador {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+      h1 {
+        font-size: 1rem;
+      }
+      .administrador-menu {
+        display: flex;
+        width: 100%;
+        p {
+          width: 25%;
+          margin: 0;
+          text-align: center;
+        }
+      }
+      .administrador-invitado {
+        display: flex;
+        width: 100%;
+
+        p {
+          width: 25%;
+          margin: 0;
+          text-align: center;
+
+          &:nth-child(1) {
+            text-align: left;
+          }
+          svg {
+            cursor: pointer;
+          }
+        }
+      }
+      span {
+        border-bottom: 1px solid black;
+      }
+    }
+    /*   .administrador-popup{
+        
+    } */
+  }
+}

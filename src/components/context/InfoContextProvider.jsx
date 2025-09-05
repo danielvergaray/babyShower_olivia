@@ -1,0 +1,384 @@
+import React, { useEffect, useState } from "react";
+import InfoContext from "./InfoContext";
+import imagenHome1 from "../../assets/imagenes/FONDO_01.png";
+import imagenHome2 from "../../assets/imagenes/FONDO_02.png";
+import tituloSeccionSobreEvento from "../../assets/imagenes/titulos/sub-sobreelevento.png";
+import tituloSeccionRegalos from "../../assets/imagenes/titulos/sub-listaderegalos.png";
+import tituloImagenPortada from "../../assets/imagenes/titulos/Titulo.png";
+import cabeceraImagen from "../../assets/imagenes/Cabecera.png";
+import imagen1 from "../../assets/imagenes/carousel/imagenCarousel_01.jpeg";
+import imagen2 from "../../assets/imagenes/carousel/imagenCarousel_02.jpeg";
+import imagen3 from "../../assets/imagenes/carousel/imagenCarousel_03.jpeg";
+import imagen4 from "../../assets/imagenes/carousel/imagenCarousel_04.jpeg";
+import imagen5 from "../../assets/imagenes/carousel/imagenCarousel_05.jpeg";
+import imagen6 from "../../assets/imagenes/carousel/imagenCarousel_06.jpg";
+import iconoCroissant from "../../assets/imagenes/iconos/croissant.png";
+import iconoCupcake from "../../assets/imagenes/iconos/cupcake.png";
+import iconoCupcakePan from "../../assets/imagenes/iconos/cupcakeypan.png";
+import iconDonut from "../../assets/imagenes/iconos/donut.png";
+import iconoHornoPanes from "../../assets/imagenes/iconos/hornoypanes.png";
+import iconoMuffin from "../../assets/imagenes/iconos/muffin.png";
+import iconoPan from "../../assets/imagenes/iconos/pan.png";
+
+import imagenDesktop from "../../assets/imagenes/FOTODESKTOP.jpg";
+
+import {
+  getFirestore,
+  collection,
+  query,
+  updateDoc,
+  getDocs,
+  doc,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
+import "aos/dist/aos.css";
+
+const InfoContextProvider = ({ children }) => {
+  const informacion = {
+    seccionHome: {
+      imagenCabecera: cabeceraImagen,
+      imagen1: imagenHome1,
+      imagen2: imagenHome2,
+      tituloImagenPortada: tituloImagenPortada,
+      fecha: "28 de septiembre",
+      imagenDesktop: imagenDesktop,
+      nombre: "Olivia",
+      iconoCroissant: iconoCroissant,
+      iconoCupcake: iconoCupcake,
+      iconoCupcakePan: iconoCupcakePan,
+      iconDonut: iconDonut,
+      iconoHornoPanes: iconoHornoPanes,
+      iconoMuffin: iconoMuffin,
+      iconoPan: iconoPan,
+    },
+
+    seccionContador: {
+      //tituloImagen: tituloSeccionContador,
+      titulo: "hay un pancito en el horno. y ya casi es hora de conocerlo",
+      subtitulo: "ven a celebrar juntos su llegada",
+      diaEvento: 28,
+      mesEvento: "septiembre",
+      anioEvento: 2025,
+    },
+
+    seccionSobreEvento: {
+      tituloImagen: tituloSeccionSobreEvento,
+      subtitulo: "fecha y hora",
+      dia: "28",
+      linkMaps: "https://maps.app.goo.gl/KBWfrP3hXLg3M3ty5",
+      mes: "de septiembre",
+      hora: "3.00",
+      rango: "de la tarde",
+      subtitulo2: "lugar",
+      direccion: "Jirón La Floresta 125 - Camacho",
+      distrito: "Santiago de Surco",
+      boton: "ver mapa",
+    },
+
+    seccionCarousel: {
+      tituloImagen: null,
+      titulo:
+        "A fuego lento se hornea la mejor etapa de neustras vidas. Olivia va creciendo y se va haciendo espacio en nuestro hogar",
+      carouselImagenes: [
+        {
+          imagenCarousel: imagen1,
+        },
+        {
+          imagenCarousel: imagen2,
+        },
+        {
+          imagenCarousel: imagen3,
+        },
+        {
+          imagenCarousel: imagen4,
+        },
+        {
+          imagenCarousel: imagen5,
+        },
+        {
+          imagenCarousel: imagen6,
+        },
+      ],
+    },
+
+    seccionRegalos: {
+      tituloImagen: tituloSeccionRegalos,
+      titulo:
+        "con el pancito creciendo, hay cosas que ya empieza a necesitar. si deseas hacerle un regalo, puedes ver las opciones en esta lista",
+      boton: "ver lista de regalos",
+    },
+
+    seccionForm: {
+      titulo: "Queremos que este día este lleno de personas que queremos mucho",
+      subtitulo: "si puedes venir, confirma tu asistencia",
+      boton: "enviar",
+    },
+
+    seccionFooter: {
+      tituloImagen: null,
+    },
+  };
+
+  /* ANIMACIONES */
+
+  const animacionEntrada = "fade-in";
+  const duracionAnimacion1 = "3000";
+
+  /* FORMULARIO */
+
+  const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState({
+    nombre: "",
+    respuesta: "",
+    mensaje: "",
+    id: "",
+    regaloEscogido: "",
+    posiblesInvitados: [],
+    invitadosConfirmados: [],
+  });
+
+  const getUserData = (event) => {
+    setUserData({
+      ...userData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const getUserDataName = (event) => {
+    const { name, value } = event.target;
+    // Eliminar números, caracteres especiales y acentos utilizando una expresión regular
+    const sanitizedValue = value
+      .replace(/[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/g, "")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+    setUserData({ ...userData, [name]: sanitizedValue });
+  };
+
+  const [tipoPopUpFormulario, setIipoPopUpFormulario] = useState("");
+
+  const handleEnviarFormulario = async (
+    event,
+    respuestaAsistencia,
+    userGuests
+  ) => {
+    event.preventDefault();
+    setLoading(true);
+
+    const db = getFirestore();
+    const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
+    const invitadosFirebase = collection(db, "invitados");
+
+    try {
+      const querySnapshot = await getDocs(
+        query(invitadosFirebase, where("nombre", "==", nombreMinusculas))
+      );
+
+      if (!querySnapshot.empty) {
+        const docRef = querySnapshot.docs[0].ref;
+        const existingData = querySnapshot.docs[0].data();
+
+        if (existingData.respuesta) {
+          setIipoPopUpFormulario("usuarioYaRegistrado");
+        } else {
+          if (respuestaAsistencia === "Sí") {
+            await updateDoc(docRef, {
+              respuesta: respuestaAsistencia,
+              regaloEscogido: "",
+              invitadosConfirmados: userGuests,
+            });
+            await actualizarRespuestaDeinvitadosDelUsuario(userGuests);
+            setIipoPopUpFormulario("confirmacionPositiva");
+          } else {
+            setIipoPopUpFormulario("confirmacionNegativa");
+            await updateDoc(docRef, {
+              respuesta: respuestaAsistencia,
+            });
+          }
+        }
+      }
+
+      // Limpiar campos
+      setUserData({
+        nombre: "",
+        respuesta: "",
+        mensaje: "",
+        regaloEscogido: "",
+        posiblesInvitados: [],
+        invitadosConfirmados: [],
+      });
+    } catch (error) {
+      console.error("Error al enviar datos a Firebase: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const verificarInvitados = async (guestNameTyped) => {
+    const db = getFirestore();
+    const nombreMinusculasUsuario = userData.nombre
+      .toLowerCase()
+      .split(" ")
+      .join("");
+    const nombreMinusculasInvitado = guestNameTyped
+      .toLowerCase()
+      .split(" ")
+      .join("");
+
+    const invitadosFirebase = collection(db, "invitados");
+    const buscarUsuario = query(
+      invitadosFirebase,
+      where("nombre", "==", nombreMinusculasUsuario)
+    );
+    const querySnapshot = await getDocs(buscarUsuario);
+
+    if (!querySnapshot.empty) {
+      const existingData = querySnapshot.docs[0].data();
+      if (existingData.posiblesInvitados.includes(nombreMinusculasInvitado)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  };
+
+  const actualizarRespuestaDeinvitadosDelUsuario = async (userGuests) => {
+    const db = getFirestore();
+    for (const invitado of userGuests) {
+      const nombreMinusculas = invitado.toLowerCase().split(" ").join("");
+
+      const invitadosFirebase = collection(db, "invitados");
+      const buscarUsuario = query(
+        invitadosFirebase,
+        where("nombre", "==", nombreMinusculas)
+      );
+      const querySnapshot = await getDocs(buscarUsuario);
+
+      if (!querySnapshot.empty) {
+        for (const cadaDocumento of querySnapshot.docs) {
+          const invitadoRef = doc(db, "invitados", cadaDocumento.id);
+          await updateDoc(invitadoRef, {
+            respuesta: "Si",
+          });
+        }
+      }
+    }
+  };
+
+  /* Esta parte se usa para que se verifique el nombre del usuario letra a letra */
+
+  const [usuarioAprobado, setUsuarioAprobado] = useState(false);
+
+  useEffect(() => {
+    const db = getFirestore();
+
+    const nombreMinusculas = userData.nombre.toLowerCase().split(" ").join("");
+
+    const invitadosFirebase = collection(db, "invitados");
+    const buscarInvitado = query(
+      invitadosFirebase,
+      where("nombre", "==", nombreMinusculas)
+    );
+    getDocs(buscarInvitado)
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const docRef = querySnapshot.docs[0].ref; //accede al primer documento devuelto en la consulta y devuelve una referencia del documento.
+          const existingData = querySnapshot.docs[0].data(); //evuelve los datos del documento en forma de objeto
+          setUsuarioAprobado(true);
+        } else {
+          setUsuarioAprobado(false);
+        }
+      })
+
+      .then(() => {
+        // Limpiar los campos después de enviar
+        /*  setUserData({
+        nombre: "",
+        respuesta: "",
+        mensaje: "",
+      }); */
+        console.log("registrado");
+      })
+      .catch((error) => {
+        console.error("Error al enviar datos a Firebase: ", error);
+      })
+      .finally(() => {
+        /* setLoading(false); */
+      });
+  }, [userData.nombre]);
+
+  /* Seccion del Administrador */
+
+  const deleteUsersInfoAdministrador = (idSelected) => {
+    const db = getFirestore();
+    const invitadosFirebase = collection(db, "invitados");
+    const buscarInvitado = query(
+      invitadosFirebase,
+      where("id", "==", idSelected)
+    );
+    getDocs(buscarInvitado).then((querySnapshot) => {
+      const docRef = querySnapshot.docs[0].ref;
+      const existingData = querySnapshot.docs[0].data();
+      if (existingData.respuesta || existingData.mensaje) {
+        return updateDoc(docRef, {
+          respuesta: "",
+          mensaje: "",
+        });
+      }
+    });
+  };
+
+  const [invitadosAdministrador, setInvitadosAdministrador] = useState([]);
+
+  useEffect(() => {
+    const db = getFirestore();
+    const invitadosRef = collection(db, "invitados");
+
+    const unsubscribe = onSnapshot(invitadosRef, (querySnapshot) => {
+      const listaActualizada = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setInvitadosAdministrador(listaActualizada);
+    });
+
+    // 👇 Limpia la suscripción cuando el componente se desmonta
+    return () => unsubscribe();
+  }, []);
+
+  const scrollToTop = () => {
+    // Realiza el desplazamiento suave
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const values = {
+    informacion,
+    loading,
+    getUserData,
+    getUserDataName,
+    setUserData,
+    userData,
+    handleEnviarFormulario,
+    animacionEntrada,
+    duracionAnimacion1,
+    invitadosAdministrador,
+    deleteUsersInfoAdministrador,
+    setInvitadosAdministrador,
+    usuarioAprobado,
+    verificarInvitados,
+    tipoPopUpFormulario,
+    setIipoPopUpFormulario,
+    actualizarRespuestaDeinvitadosDelUsuario,
+    iconoMuffin,
+  };
+
+  return (
+    <InfoContext.Provider value={values}> {children} </InfoContext.Provider>
+  );
+};
+
+export default InfoContextProvider;

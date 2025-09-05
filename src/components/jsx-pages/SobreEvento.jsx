@@ -1,0 +1,166 @@
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import InfoContext from "../context/InfoContext";
+import Carousel from "react-bootstrap/Carousel";
+import { CiCircleChevLeft } from "react-icons/ci";
+import { CiCircleChevRight } from "react-icons/ci";
+
+const SobreEvento = () => {
+  const { informacion, animacionEntrada, duracionAnimacion1 } =
+    useContext(InfoContext);
+
+  const { seccionSobreEvento, seccionHome } = informacion;
+
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+  return (
+    <>
+      <section className="sobreEvento-carruselVersion">
+        <div
+          className="titulo-imagen"
+          data-aos={animacionEntrada}
+          data-aos-duration={duracionAnimacion1}
+        >
+          <img src={seccionSobreEvento.tituloImagen} alt="" />
+        </div>
+
+        <Carousel
+          activeIndex={index}
+          onSelect={handleSelect}
+          indicators={false}
+          interval={null}
+          data-bs-theme="dark"
+        >
+          <Carousel.Item>
+            <div
+              className="sobreEvento-subtitulo"
+              data-aos={animacionEntrada}
+              data-aos-duration={duracionAnimacion1}
+            >
+              <p>{seccionSobreEvento.subtitulo}</p>
+            </div>
+
+            <div className="sobreEvento-fecha-hora">
+              <div className="sobreEvento-fecha">
+                <p>{seccionSobreEvento.dia}</p>
+                <p>{seccionSobreEvento.mes}</p>
+              </div>
+              <div className="sobreEvento-icono">
+                <img src={seccionHome.iconoMuffin} alt="" />
+              </div>
+              <div className="sobreEvento-hora">
+                <p>{seccionSobreEvento.hora}</p>
+                <p>{seccionSobreEvento.rango}</p>
+              </div>
+            </div>
+          </Carousel.Item>
+
+          <Carousel.Item>
+            <div className="sobreEvento-subtitulo">
+              <p>{seccionSobreEvento.subtitulo2}</p>
+            </div>
+            <div className="sobreEvento-lugar-ubicacion">
+              <img src={seccionHome.iconDonut} alt="icono-donut" />
+              <div>
+                <p>{seccionSobreEvento.direccion}</p>
+                <p>{seccionSobreEvento.distrito}</p>
+              </div>
+              <img src={seccionHome.iconoPan} alt="icono-pan" />
+            </div>
+            <div
+              className="sobreEvento-btn"
+              data-aos={animacionEntrada}
+              data-aos-duration={duracionAnimacion1}
+            >
+              <Link target="_blank" to={seccionSobreEvento.linkMaps}>
+                <button>{seccionSobreEvento.boton}</button>
+              </Link>
+            </div>
+          </Carousel.Item>
+        </Carousel>
+
+        <div className="sobreEvento-flechas">
+          <CiCircleChevLeft
+            onClick={() => (index === 0 ? setIndex(1) : setIndex(0))}
+          />
+
+          <CiCircleChevRight
+            onClick={() => (index === 0 ? setIndex(1) : setIndex(0))}
+          />
+        </div>
+      </section>
+
+      {/* <section className="seccion-sobreEvento-mobile">
+        <>
+          <div
+            className="titulo-imagen"
+            data-aos={animacionEntrada}
+            data-aos-duration={duracionAnimacion1}
+          >
+            <img src={seccionSobreEvento.tituloImagen} alt="" />
+          </div>
+
+          <div
+            className="sobreEvento-subtitulo"
+            data-aos={animacionEntrada}
+            data-aos-duration={duracionAnimacion1}
+          >
+            <h3>{seccionSobreEvento.subtitulo}</h3>
+          </div>
+          <div className="sobreEvento-fecha-hora-container">
+            <div
+              className="sobreEvento-fecha-hora"
+              data-aos={animacionEntrada}
+              data-aos-duration={duracionAnimacion1}
+            >
+              <div className="sobreEvento-fecha">
+                <p>{seccionSobreEvento.dia}</p>
+                <p>{seccionSobreEvento.mes}</p>
+              </div>
+              <div className="sobreEvento-span">
+                <span></span>
+              </div>
+              <div className="sobreEvento-hora">
+                <p>{seccionSobreEvento.hora}</p>
+                <p>{seccionSobreEvento.rango}</p>
+              </div>
+            </div>
+
+            <div className="sobreEvento-lugar">
+              <h3
+                data-aos={animacionEntrada}
+                data-aos-duration={duracionAnimacion1}
+              >
+                {seccionSobreEvento.subtitulo2}
+              </h3>
+
+              <div
+                className="sobreEvento-lugar-ubicacion"
+                data-aos={animacionEntrada}
+                data-aos-duration={duracionAnimacion1}
+              >
+                <h2>{seccionSobreEvento.direccion}</h2>
+                <h2>{seccionSobreEvento.distrito}</h2>
+              </div>
+              <div
+                data-aos={animacionEntrada}
+                data-aos-duration={duracionAnimacion1}
+              >
+                <button>
+                  <Link target="_blank" to={seccionSobreEvento.linkMaps}>
+                    {seccionSobreEvento.boton}
+                  </Link>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      </section> */}
+    </>
+  );
+};
+
+export default SobreEvento;

@@ -1,0 +1,48 @@
+// SeccionRegalos.js
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import InfoContext from "../context/InfoContext";
+
+const SeccionRegalos = () => {
+  const { informacion, animacionEntrada, duracionAnimacion1 } =
+    useContext(InfoContext);
+
+  const { seccionRegalos, seccionHome } = informacion;
+  const [showPopup, setShowPopup] = useState(false);
+
+  return (
+    <>
+      <div
+        className="titulo-imagen"
+
+        /*   data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1} */
+      >
+        <img src={seccionRegalos.tituloImagen} alt="" />
+      </div>
+
+      <div
+        className="seccion-regalos-frase"
+        /*  data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1} */
+      >
+        <div>
+          <img src={seccionHome.iconoCroissant} alt="icono-croissant" />
+          <img src={seccionHome.iconDonut} alt="icono-donut" />
+        </div>
+        <p>{seccionRegalos.titulo}</p>
+        <div>
+          <img src={seccionHome.iconoCupcake} alt="icono-cupcake" />
+          <img src={seccionHome.iconoPan} alt="icono-pan" />
+        </div>
+      </div>
+      <div className="seccion-regalos-btn">
+        <Link to="lista-regalos">
+          <button>{seccionRegalos.boton}</button>
+        </Link>
+      </div>
+    </>
+  );
+};
+
+export default SeccionRegalos;
