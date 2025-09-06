@@ -55,7 +55,7 @@ const InfoContextProvider = ({ children }) => {
 
     seccionContador: {
       //tituloImagen: tituloSeccionContador,
-      titulo: "hay un pancito en el horno. y ya casi es hora de conocerlo",
+      titulo: "hay un pancito en el horno y ya casi es hora de conocerlo",
       subtitulo: "ven a celebrar juntos su llegada",
       diaEvento: 28,
       mesEvento: "septiembre",
@@ -79,7 +79,7 @@ const InfoContextProvider = ({ children }) => {
     seccionCarousel: {
       tituloImagen: null,
       titulo:
-        "A fuego lento se hornea la mejor etapa de neustras vidas. Olivia va creciendo y se va haciendo espacio en nuestro hogar",
+        "A fuego lento se hornea la mejor etapa de nuestras vidas. Olivia va creciendo y se va haciendo espacio en nuestro hogar",
       carouselImagenes: [
         {
           imagenCarousel: imagen1,

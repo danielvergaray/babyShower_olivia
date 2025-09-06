@@ -57,6 +57,8 @@ const PopUpCreator = ({
   useEffect(() => {
     if (usuarioAprobado) {
       setIsButtonListaRegalosDisabled(false);
+    } else {
+      setIsButtonListaRegalosDisabled(true);
     }
   }, [usuarioAprobado]);
 
@@ -69,6 +71,7 @@ const PopUpCreator = ({
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
+        dialogClassName="modal-lg"
       >
         {tipoModal === "lista-regalos" ? (
           <>
@@ -132,7 +135,7 @@ const PopUpCreator = ({
                 </Modal.Body>
               </div>
             ) : listaRegalosSection === "agradecimiento" ? (
-              <div className="modal-listaRegalos modal-listaRegalos-confirmacion ">
+              <div className="modal-listaRegalos modal-listaRegalos-confirmacion agradecimiento">
                 <Modal.Header>
                   <p>
                     <IoCloseCircleOutline onClick={handleCloseListaRegalos} />
@@ -140,13 +143,12 @@ const PopUpCreator = ({
                 </Modal.Header>
 
                 <Modal.Body>
-                  <div>Aqui va una imagen</div>
-                  <div>
-                    <p>
-                      gracias por reservar este regalo recuerda comprarlo antes
-                      del evento
-                    </p>
-                  </div>
+                  <img src={iconoMuffin} alt="icono-muffin" />
+
+                  <p>
+                    gracias por reservar este regalo recuerda comprarlo antes
+                    del evento
+                  </p>
                 </Modal.Body>
               </div>
             ) : (
@@ -198,7 +200,7 @@ const PopUpCreator = ({
             </Modal.Footer>
           </>
         ) : tipoModal === "usuarioYaRegistrado" ? (
-          <>
+          <div className="modal-confirmacionInvitacion">
             <Modal.Header>
               <p>
                 <IoCloseCircleOutline
@@ -207,10 +209,15 @@ const PopUpCreator = ({
               </p>
             </Modal.Header>
             <Modal.Body>
-              Hola, ya has registrado tu respuesta anteriormente, si quieres
-              cambiarla, comunciate con el administrador del evento
+              <img src={iconoMuffin} alt="icono-muffin" />
+              <p>Ya has registrado</p>
+              <p>anteriormente, comunícate</p>
+              <p>con el administrador</p>
             </Modal.Body>
-          </>
+            <Modal.Footer>
+              <br></br>
+            </Modal.Footer>
+          </div>
         ) : tipoModal === "confirmacionPositiva" ? (
           <div className="modal-confirmacionInvitacion">
             <Modal.Header>

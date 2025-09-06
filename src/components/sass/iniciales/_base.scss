@@ -7,7 +7,8 @@ body {
   color: $Principal-azul;
   p {
     text-align: center;
-    font-size: 35px;
+    line-height: 1;
+    font-size: 32px;
     margin: 0;
     color: $Principal-azul;
   }
@@ -16,7 +17,7 @@ body {
     border: none;
     font-weight: 100;
     color: $Principal-blanco;
-    font-size: 0.8rem;
+    font-size: 15px;
     border-radius: 9999px;
     background-color: $Principal-azul;
     text-transform: uppercase;
@@ -26,6 +27,14 @@ body {
     button {
       font-size: 25px;
     }
+  }
+
+  input {
+    border-radius: 9999px;
+    padding: 20px 30px;
+    border: 1px solid $Principal-azul;
+    outline: none;
+    font-size: 20px;
   }
 
   .seccion-contador,
@@ -43,7 +52,7 @@ body {
   .seccion-carousel,
   .seccion-regalos,
   .seccion-formulario {
-    padding: 70px 4vw;
+    padding: 150px 4vw;
   }
 
   .hero-section,

@@ -68,12 +68,17 @@ const ListaRegalos = ({ regalos, textosArray }) => {
                 </div>
                 <div className="seccion-listaRegalos-CadaRegalo_botones">
                   <Link to={regalo.linkWeb} target="_blank">
-                    <button>{textos.botonInfo}</button>
+                    <button className="btn-verInfo">{textos.botonInfo}</button>
                   </Link>
 
-                  <button onClick={() => handleRegalo(regalo)}>
-                    {textos.botonReservar}
-                  </button>
+                  <div>
+                    <button
+                      className="btn-reservar"
+                      onClick={() => handleRegalo(regalo)}
+                    >
+                      {textos.botonReservar}
+                    </button>
+                  </div>
                 </div>
               </>
             ) : (

@@ -2,7 +2,7 @@
 
 @media (min-width: 847px) {
   .seccion-listaRegalos {
-    padding: 50px 0px;
+    padding-bottom: 100px;
     .hero-imagenCabecera {
       img {
         width: 100%;
@@ -10,15 +10,16 @@
     }
 
     .seccion-listaRegalos-titulo {
-      width: 85%;
+      width: 50%;
       margin: auto;
-
+      padding-top: 100px;
       p {
         line-height: 1;
       }
       .seccion-listaRegalos-imagen {
         text-align: center;
-        padding-bottom: 10px;
+        padding-bottom: 30px;
+
         img {
           height: 70px;
         }
@@ -30,11 +31,12 @@
       flex-wrap: wrap;
       justify-content: center;
       padding-top: 50px;
+      margin: 0 200px;
       .seccion-listaRegalos-CadaRegalo {
         width: 300px;
         height: 100%;
         text-align: center;
-        margin: 20px 10px;
+        margin: 40px 20px;
 
         .seccion-listaRegalos-CadaRegalo_imagen {
           position: relative;
@@ -51,11 +53,13 @@
               cursor: auto;
               font-size: 0.8rem;
               padding: 5px 15px;
+              font-family: "give-away";
             }
           }
           .etiquetaDisponible {
             button {
-              background-color: $Secundario-verde;
+              background-color: white;
+              color: $Principal-azul;
             }
           }
         }
@@ -84,28 +88,39 @@
         .seccion-listaRegalos-CadaRegalo_botones {
           display: flex;
           flex-direction: column;
-          width: 60%;
           text-align: left;
           padding-top: 20px;
 
-          button {
-            margin: 5px 0;
-            text-align: left;
-            background-color: $Principal-azul;
-            padding: 10px 15px;
-            width: fit-content;
+          div {
+            .btn-reservar {
+              margin: 5px 0;
+              text-align: left;
+              background-color: $Principal-azul;
+              width: fit-content;
+            }
+            :hover {
+              background-color: $Secundario-naranja;
+              color: white;
+            }
           }
+
           .btn-desactivado {
             background-color: $Secundario-gris;
           }
 
           a {
             width: fit-content;
-            button {
+            .btn-verInfo {
               margin: 5px 0;
               text-align: left;
-              font-size: 15px;
+              font-size: 0.8rem;
+              background-color: white;
+              border: 1px solid $Secundario-verde;
+              color: $Principal-azul;
+            }
+            :hover {
               background-color: $Secundario-verde;
+              color: white;
             }
           }
         }

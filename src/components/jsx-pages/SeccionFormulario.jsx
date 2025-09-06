@@ -32,6 +32,8 @@ const SeccionFormulario = () => {
 
   const [showInputInvitado, setShowInputInvitado] = useState(false);
 
+  const [usuarioConfirmado, setUsuarioConfirmado] = useState(false);
+
   const [dropdownOptionSelected, setDropdownOptionSelected] = useState(
     "Confirma tu asistencia"
   );
@@ -39,8 +41,8 @@ const SeccionFormulario = () => {
   const [userGuests, setUserGuests] = useState([]);
   const [guestNameTyped, setGuestNameTyped] = useState("");
   const [guestNameSanitized, setGuestNameSanitized] = useState("");
-  const [noGuestVacancyNotification, setNoGuestVacancyNotification] =
-    useState(false);
+  /* const [noGuestVacancyNotification, setNoGuestVacancyNotification] =
+    useState(false); */
 
   const handleUserGuest = (event) => {
     const { name, value } = event.target;
@@ -139,7 +141,12 @@ const SeccionFormulario = () => {
               <Dropdown.Item onClick={() => setDropdownOptionSelected("Sí")}>
                 Sí
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setDropdownOptionSelected("No")}>
+              <Dropdown.Item
+                onClick={() => {
+                  setDropdownOptionSelected("No");
+                  setUserGuests([]);
+                }}
+              >
                 No
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -147,7 +154,14 @@ const SeccionFormulario = () => {
 
           {dropdownOptionSelected === "Sí" && usuarioAprobado && (
             <div className="formulario-usuario-linkInvitados">
-              <p onClick={() => setShowInputInvitado(!showInputInvitado)}>
+              <p
+                onClick={() => {
+                  {
+                    setShowInputInvitado(!showInputInvitado);
+                  }
+                  setGuestNameTyped("");
+                }}
+              >
                 ¿Deseas agregar a alguien mas?
               </p>
             </div>
@@ -155,26 +169,28 @@ const SeccionFormulario = () => {
         </div>
 
         <div className="seccion-formulario-invitados">
-          {showInputInvitado && (
-            <div className="seccion-formulario-invitadosInput">
-              <form action="">
-                <label htmlFor="nombre"></label>
-                <input
-                  type="text"
-                  name="nombre"
-                  pattern="^[a-zA-Z ]*$" // Acepta solo letras (mayúsculas y minúsculas) y espacios
-                  title="Solo se permiten letras (mayúsculas y minúsculas) y espacios"
-                  placeholder="NOMBRE Y APELLIDO DEL INVITADO"
-                  onChange={handleUserGuest}
-                  value={guestNameTyped}
-                  required
-                />
-              </form>
-              <div onClick={handleAddGuest} className="icono-agregar">
-                <HiPlusCircle />
+          {dropdownOptionSelected === "Sí" &&
+            usuarioAprobado &&
+            showInputInvitado && (
+              <div className="seccion-formulario-invitadosInput">
+                <form action="">
+                  <label htmlFor="nombre"></label>
+                  <input
+                    type="text"
+                    name="nombre"
+                    pattern="^[a-zA-Z ]*$" // Acepta solo letras (mayúsculas y minúsculas) y espacios
+                    title="Solo se permiten letras (mayúsculas y minúsculas) y espacios"
+                    placeholder="NOMBRE Y APELLIDO DEL INVITADO"
+                    onChange={handleUserGuest}
+                    value={guestNameTyped}
+                    required
+                  />
+                </form>
+                <div onClick={handleAddGuest} className="icono-agregar">
+                  <HiPlusCircle />
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
           <div className="seccion-formulario-invitadosAgregados">
             {userGuests.map((guest, index) => (
