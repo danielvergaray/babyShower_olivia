@@ -1,14 +1,20 @@
 @media (min-width: 847px) {
   .seccion-footer {
     text-align: center;
-    background-color: $Secundario-naranja;
+    background-color: $Principal-azul;
     padding: 40px 10px;
+
     .titulo-imagen {
       width: 40%;
       margin: auto;
 
       img {
         width: 100%;
+      }
+    }
+    .link-administrador {
+      p {
+        color: white;
       }
     }
   }
