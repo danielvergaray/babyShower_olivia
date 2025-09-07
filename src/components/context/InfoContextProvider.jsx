@@ -23,7 +23,6 @@ import iconDonut from "../../assets/imagenes/iconos/donut.png";
 import iconoHornoPanes from "../../assets/imagenes/iconos/hornoypanes.png";
 import iconoMuffin from "../../assets/imagenes/iconos/muffin.png";
 import iconoPan from "../../assets/imagenes/iconos/pan.png";
-
 import imagenDesktop from "../../assets/imagenes/FOTODESKTOP.jpg";
 
 import {
