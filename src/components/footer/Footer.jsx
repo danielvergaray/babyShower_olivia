@@ -8,10 +8,12 @@ const Footer = () => {
   const { seccionFooter } = informacion;
   return (
     <>
-      <div className="titulo-imagen">
-        <img src={seccionFooter.tituloImagen} alt="" />
+      <div className="link">
+        <Link target="_blank" to="https://studio-code-eta.vercel.app/">
+          <p>DESIGNED BY studioCode</p>
+        </Link>
       </div>
-      <div className="link-administrador">
+      <div className="link link-admin">
         <Link to="/login">
           <p>¿Eres administrador?</p>
         </Link>
