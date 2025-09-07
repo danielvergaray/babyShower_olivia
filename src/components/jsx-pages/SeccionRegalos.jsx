@@ -37,7 +37,7 @@ const SeccionRegalos = () => {
         </div>
       </div>
       <div className="seccion-regalos-btn">
-        <Link to="lista-regalos">
+        <Link to="lista-regalos" target="_blank">
           <button>{seccionRegalos.boton}</button>
         </Link>
       </div>

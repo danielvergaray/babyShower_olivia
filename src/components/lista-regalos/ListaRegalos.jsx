@@ -15,14 +15,14 @@ const ListaRegalos = ({ regalos, textosArray }) => {
     id: "",
   });
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleRegalo = (regaloSelected) => {
     setInfoRegaloSelected(regaloSelected);
     setShow(true);
     const regaloSelectedId = regaloSelected.id;
     const regaloSelectedNombre = regaloSelected.nombre;
-    navigate(`/lista-regalos/${regaloSelectedNombre}${regaloSelectedId}`);
+    //navigate(`/lista-regalos/${regaloSelectedNombre}${regaloSelectedId}`);
   };
 
   useEffect(() => {

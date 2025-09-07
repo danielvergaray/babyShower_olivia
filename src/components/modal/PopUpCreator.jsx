@@ -27,13 +27,13 @@ const PopUpCreator = ({
   const [showInputDedicatoria, setShowInputDedicatoria] = useState(false);
   const [isButtonListaRegalosDisabled, setIsButtonListaRegalosDisabled] =
     useState(true);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const handleClose = () => {
     setShow(false);
   };
 
   const handleCloseListaRegalos = () => {
-    navigate("/lista-regalos");
+    //navigate("/lista-regalos");
     setShow(false);
     setShowInputDedicatoria(false);
     setListaRegalosSection("");
@@ -45,9 +45,9 @@ const PopUpCreator = ({
   const handleSiguienteButton = () => {
     const regaloSelectedId = infoRegaloSelected.id;
     const regaloSelectedNombre = infoRegaloSelected.nombre;
-    navigate(
+    /*  navigate(
       `/lista-regalos/${regaloSelectedNombre}${regaloSelectedId}/confirmacionRegalo`
-    );
+    ); */
     setListaRegalosSection("confirmacionRegalo");
   };
   const handleListaRegaloEnviarButton = () => {

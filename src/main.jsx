@@ -24,12 +24,12 @@ const router = createBrowserRouter([
             path: "/lista-regalos/:regalosId",
             element: <ListaRegalosContainer />,
 
-            children: [
+            /* children: [
               {
                 path: "confirmacionRegalo",
                 element: <ListaRegalosContainer />,
               },
-            ],
+            ], */
           },
         ],
       },
