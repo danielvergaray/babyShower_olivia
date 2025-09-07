@@ -106,7 +106,7 @@
         }
         .carousel-inner {
           .carousel-item {
-            height: 280px;
+            height: 300px;
             .sobreEvento-subtitulo {
               text-align: center;
               padding: 40px 0;
@@ -125,7 +125,7 @@
               }
               p:nth-child(1) {
                 font-size: 6rem;
-                height: 3.5rem;
+                height: 6rem;
                 font-family: "abygaer";
               }
               .sobreEvento-fecha {
@@ -277,7 +277,6 @@
             border: 1px solid $Principal-azul;
             outline: none;
             background-color: white;
-
             margin: 10px 0;
 
             p {
@@ -318,10 +317,8 @@
         .seccion-formulario-invitadosInput {
           display: grid;
           grid-template-columns: 80% 20%;
-          //margin: auto;
           width: 100%;
-          padding-left: 6%;
-          padding-bottom: 20px;
+          padding: 20px 6% 0;
           form {
             grid-column: 1;
             width: 100%;
@@ -412,6 +409,8 @@
   }
 }
 
+/* VERSION MOBILE */
+
 @media (max-width: 846px) {
   .hero-section {
     text-align: center;
@@ -430,14 +429,11 @@
       padding-top: 20px;
       p {
         letter-spacing: 10px;
-        font-size: 25px;
+        font-size: 18px;
       }
     }
     .hero-fecha {
       padding-top: 20px;
-      p {
-        font-family: "abygaer";
-      }
     }
     .hero-flecha {
       padding-top: 100px;
@@ -471,7 +467,7 @@
         margin-top: 0;
       }
       :nth-child(3) {
-        width: 80px;
+        width: 60px;
       }
     }
 
@@ -494,23 +490,23 @@
           .contador-recuadro-numero {
             .contador-recuadro-digito {
               width: fit-content;
-              height: 70px;
+              height: 50px;
               padding: 0;
               border-radius: 90%;
 
               p {
-                font-size: 5rem;
+                font-size: 45px;
                 margin: auto;
                 font-family: "abygaer";
               }
             }
           }
           .contador-texto {
-            margin-top: 5px;
-
+            margin-top: 0px;
+            padding: 0;
             p {
-              padding: 2px 5px;
-              font-size: 1.5rem;
+              padding: 0px 5px;
+              font-size: 15px;
 
               font-family: "give-away";
               text-align: center;
@@ -541,35 +537,31 @@
       .carousel {
         .carousel-inner {
           .carousel-item {
-            padding-top: 100px;
-            height: 400px;
+            padding-top: 60px;
+            height: 300px;
             .sobreEvento-subtitulo {
-              p {
-                font-size: 30px;
-                font-family: "abygaer";
-              }
+              padding-bottom: 40px;
             }
             .sobreEvento-fecha-hora {
               display: grid;
               grid-template-columns: 45% 10% 45%;
               width: 100%;
               margin: 0;
-              padding-top: 20px;
 
               p {
-                font-size: 30px;
+                font-size: 18px;
                 font-family: "give-away";
               }
               p:nth-child(1) {
-                font-size: 80px;
-                height: 6rem;
+                font-size: 60px;
+                height: 3.5rem;
                 font-family: "abygaer";
               }
 
               .sobreEvento-icono {
                 margin: auto;
                 img {
-                  width: 50px;
+                  width: 30px;
                 }
               }
             }
@@ -578,17 +570,13 @@
               width: 90%;
               margin: auto;
               p {
-                font-size: 28px;
+                font-size: 18px;
               }
             }
             .sobreEvento-btn {
               display: flex;
               justify-content: center;
               padding: 20px 0;
-
-              button {
-                font-size: 30px;
-              }
             }
           }
         }
@@ -621,10 +609,9 @@
       }
       p {
         padding: 30px;
-        line-height: 1;
-        width: 85%;
+
+        width: 100%;
         margin: auto;
-        font-size: 30px;
       }
     }
 
@@ -633,7 +620,7 @@
         display: flex;
         /*  overflow-x: scroll; */
         width: calc(400px * 12); //Cantidad de imagenes * 2
-        animation: scroll 10s linear infinite alternate;
+        animation: scroll 5s linear infinite alternate;
 
         &:hover {
           animation-play-state: paused;
@@ -654,7 +641,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-50px * 35)); //cantidad de iconos
+      transform: translateX(calc(-50px * 30)); //cantidad de iconos
     }
   }
 
@@ -669,9 +656,7 @@
         margin: auto;
         p {
           margin: auto;
-          font-size: 30px;
           width: 75%;
-          line-height: 1;
         }
         :nth-child(2) {
           padding: 50px 0;
@@ -684,11 +669,13 @@
         form {
           display: flex;
           justify-content: center;
-          font-size: 30px;
+          input {
+            width: 100%;
+          }
           .formulario-icono {
-            font-size: 45px;
-            top: 40px;
-            left: 90%;
+            font-size: 35px;
+            top: 30px;
+            left: 92%;
             position: absolute;
             transform: translate(-50%, -50%);
           }
@@ -700,17 +687,15 @@
           button {
             display: grid;
             grid-template-columns: 95% 5%;
-            width: 90%;
+            width: 100%;
             border-radius: 9999px;
             padding: 20px 40px;
             border: 1px solid $Principal-azul;
             outline: none;
             background-color: white;
             color: $Principal-azul;
-            margin: 10px 0;
 
             p {
-              font-size: 30px;
               margin: 0;
               text-align: left;
             }
@@ -719,21 +704,18 @@
             display: none !important;
           }
           .dropdown-menu {
-            width: 90%;
-            font-size: 30px;
+            width: 100%;
           }
         }
         .formulario-usuario-linkInvitados {
-          width: 90%;
+          padding-top: 20px;
           margin: auto;
+
           p {
             text-decoration: underline;
-            font-size: 1.25rem;
+            font-size: 18px;
             margin: 0;
-            padding-left: 40px;
             text-align: left;
-            cursor: pointer;
-            width: fit-content;
           }
         }
       }
@@ -742,32 +724,26 @@
         padding-top: 50px;
         .seccion-formulario-invitadosInput {
           display: grid;
-          grid-template-columns: 90% 10%;
+          grid-template-columns: 80% 20%;
           margin: auto;
 
           form {
             display: flex;
-            justify-content: center;
-            font-size: 20px;
 
             input {
-              width: 90%;
+              width: 100%;
             }
           }
           .icono-agregar {
             font-size: 3.5rem;
             padding-bottom: 5px;
             grid-column: 2;
-            svg {
-              cursor: pointer;
-              color: blue;
-            }
           }
         }
         .seccion-formulario-invitadosAgregados {
           padding: 20px 0 0 0px;
           margin: auto;
-          margin-left: 70px;
+          margin-left: 20px;
           width: 70%;
 
           div {
@@ -776,12 +752,12 @@
             :nth-child(2) {
               padding-left: 10px;
               font-size: 1.25rem;
-              color: blue;
+
               margin: auto 0;
             }
             p {
               margin: 0;
-              font-size: 1.5rem;
+
               text-align: left;
               text-transform: capitalize;
             }
@@ -795,7 +771,7 @@
         padding: 50px 0;
         button {
           border-radius: 9999px;
-          font-size: 25px;
+
           padding: 20px 30px;
         }
         .disabledButton {
@@ -803,14 +779,6 @@
           cursor: auto;
         }
       }
-    }
-
-    input {
-      width: 90%;
-      border-radius: 9999px;
-      padding: 20px 40px;
-      border: 1px solid blue;
-      outline: none;
     }
   }
 

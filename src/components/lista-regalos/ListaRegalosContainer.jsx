@@ -13,7 +13,7 @@ const ListaRegalosContainer = () => {
         "https://www.falabella.com.pe/falabella-pe/product/21108050/Cuna-Colecho-Bebe-Joie-Kubbie-Sleep-Foggy-Gray/21108050",
       linkImagen:
         "https://res.cloudinary.com/dcbhkxnwd/image/upload/v1756416595/baby_shower_olivia-regalos/cuna_colecho_vsgh4j.jpg",
-      disponible: "si",
+      disponible: "no",
       id: generarId(),
       comprador: "",
     },

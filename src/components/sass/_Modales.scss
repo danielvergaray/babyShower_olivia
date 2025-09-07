@@ -13,6 +13,12 @@
     svg {
       cursor: pointer;
     }
+
+    p {
+      text-align: right;
+      width: 100%;
+      font-size: 45px;
+    }
   }
   .modal-footer {
     border-top: none !important;
@@ -23,7 +29,6 @@
     margin: 20px;
 
     p {
-      font-size: 1.5rem;
       width: 85%;
       margin: auto;
       text-align: center;
@@ -167,16 +172,6 @@
     flex-direction: column;
   }
 
-  .modal-header {
-    padding: 0;
-
-    p {
-      text-align: right;
-
-      width: 100%;
-      font-size: 45px;
-    }
-  }
   .modal-body {
     text-align: center;
     padding: 0;
@@ -204,10 +199,16 @@
   .modal-content {
     background-color: $Principal-blanco;
     border-radius: 30px;
-    height: 320px;
+    //height: 320px;
   }
   .modal-header {
     border-bottom: none !important;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    p {
+      font-size: 30px;
+    }
     svg {
       cursor: pointer;
     }
@@ -348,22 +349,17 @@
     align-items: center;
   }
 
-  .modal-header {
-    padding: 0;
-    width: 100%;
-    display: flex;
-    justify-content: right;
-  }
   .modal-body {
     text-align: center;
     padding: 0;
+
     img {
-      width: 50px;
+      width: 40px;
       padding: 10px 0;
     }
     p {
-      font-size: 25px;
-      line-height: 1;
+      //font-size: 25px;
+
       margin: auto;
     }
   }
