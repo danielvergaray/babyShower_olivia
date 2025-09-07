@@ -103,8 +103,8 @@ const SeccionFormulario = () => {
 
       <div className="seccion-formulario-userContainer">
         <div className="seccion-formulario-titulo">
-          <p>{seccionForm.titulo}</p>
-          <p>{seccionForm.subtitulo}</p>
+          <p className="cuerpo-textos">{seccionForm.titulo}</p>
+          <p className="cuerpo-textos">{seccionForm.subtitulo}</p>
         </div>
 
         <div className="seccion-formulario-usuario">

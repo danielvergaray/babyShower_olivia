@@ -27,7 +27,7 @@ const Home = () => {
           <img src={seccionHome.imagenCabecera} alt="" />
         </div>
         <div className="hero-subtitulo">
-          <p>Bienvenida {seccionHome.nombre}</p>
+          <p className="cuerpo-textos">Bienvenida {seccionHome.nombre}</p>
         </div>
         <div
           className="hero-titulo" /* data-aos-easing="linear"data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" */
@@ -41,7 +41,7 @@ const Home = () => {
         <div
           className="hero-fecha" /* data-aos-easing="linear" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="1500" */
         >
-          <p>{seccionHome.fecha}</p>
+          <p className="subtitulos-textos">{seccionHome.fecha}</p>
         </div>
         <div className="hero-flecha">
           <CiCircleChevDown />

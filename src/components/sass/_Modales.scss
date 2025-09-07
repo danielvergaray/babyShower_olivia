@@ -5,11 +5,14 @@
     background-color: $Principal-blanco;
     border-radius: 30px;
     padding: 20px 50px;
-
+    font-family: "give-away";
+    width: fit-content;
+    margin: auto;
     //height: 320px;
   }
   .modal-header {
     border-bottom: none !important;
+
     svg {
       cursor: pointer;
     }
@@ -20,23 +23,42 @@
       font-size: 45px;
     }
   }
+
+  .modal-body {
+    text-align: center;
+    padding: 0;
+    img {
+      width: 50px;
+      padding: 20px 0;
+    }
+    p {
+      font-size: 25px;
+      line-height: 1;
+      margin: auto;
+    }
+  }
   .modal-footer {
+    padding-top: 30px;
+    margin: auto;
     border-top: none !important;
+    button {
+      font-size: 20px;
+      font-family: "abygaer";
+    }
   }
 
   .modal-listaRegalos {
-    padding-top: 20px;
     margin: 20px;
 
     p {
       width: 85%;
-      margin: auto;
+      margin: 0;
       text-align: center;
       line-height: 1;
     }
     .modal-header {
       display: flex;
-
+      justify-content: right;
       p {
         text-align: right;
         svg {
@@ -136,6 +158,8 @@
         padding: 10px 0;
         cursor: pointer;
         width: fit-content;
+        font-family: "give-away";
+        text-decoration: underline;
       }
       button {
         width: fit-content;
@@ -167,31 +191,9 @@
     }
   }
   .modal-confirmacionInvitacion {
-    margin: 20px;
+    margin: 0px;
     display: flex;
     flex-direction: column;
-  }
-
-  .modal-body {
-    text-align: center;
-    padding: 0;
-    img {
-      width: 50px;
-      padding: 20px 0;
-    }
-    p {
-      font-size: 25px;
-      line-height: 1;
-      margin: auto;
-    }
-  }
-  .modal-footer {
-    padding-top: 30px;
-    margin: auto;
-    button {
-      font-size: 20px;
-      font-family: "abygaer";
-    }
   }
 }
 
@@ -199,7 +201,7 @@
   .modal-content {
     background-color: $Principal-blanco;
     border-radius: 30px;
-    //height: 320px;
+    font-family: "give-away";
   }
   .modal-header {
     border-bottom: none !important;
@@ -211,6 +213,20 @@
     }
     svg {
       cursor: pointer;
+    }
+  }
+  .modal-body {
+    text-align: center;
+    padding: 0;
+
+    img {
+      width: 40px;
+      padding: 10px 0;
+    }
+    p {
+      //font-size: 25px;
+
+      margin: auto;
     }
   }
   .modal-footer {
@@ -239,8 +255,8 @@
     }
     .modal-body {
       display: grid;
-      grid-template-columns: 30% 70%;
-      padding: 20px 30px 50px 50px;
+      grid-template-columns: 40% 60%;
+      padding: 20px 30px 50px 30px;
 
       .listaRegalos-imagen {
         grid-column: 1;
@@ -249,7 +265,7 @@
         flex-direction: column;
         align-items: center;
         img {
-          width: 90%;
+          width: 100%;
         }
 
         p {
@@ -321,9 +337,9 @@
         }
       }
       .modal-listaRegalos-linkDedicatoria {
-        font-size: 0.5rem;
+        font-size: 12px;
         padding: 10px 0;
-        cursor: pointer;
+        text-decoration: underline;
         width: fit-content;
       }
       button {
@@ -341,26 +357,22 @@
       }
     }
   }
+  .agradecimiento {
+    .modal-body {
+      margin: auto;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      p {
+        padding-top: 20px;
+      }
+    }
+  }
 
   .modal-confirmacionInvitacion {
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .modal-body {
-    text-align: center;
-    padding: 0;
-
-    img {
-      width: 40px;
-      padding: 10px 0;
-    }
-    p {
-      //font-size: 25px;
-
-      margin: auto;
-    }
   }
 }

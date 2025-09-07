@@ -40,33 +40,37 @@ const SobreEvento = () => {
               data-aos={animacionEntrada}
               data-aos-duration={duracionAnimacion1}
             >
-              <p>{seccionSobreEvento.subtitulo}</p>
+              <p className="subtitulos-textos">
+                {seccionSobreEvento.subtitulo}
+              </p>
             </div>
 
             <div className="sobreEvento-fecha-hora">
               <div className="sobreEvento-fecha">
                 <p>{seccionSobreEvento.dia}</p>
-                <p>{seccionSobreEvento.mes}</p>
+                <p className="otros-textos">{seccionSobreEvento.mes}</p>
               </div>
               <div className="sobreEvento-icono">
                 <img src={seccionHome.iconoMuffin} alt="" />
               </div>
               <div className="sobreEvento-hora">
                 <p>{seccionSobreEvento.hora}</p>
-                <p>{seccionSobreEvento.rango}</p>
+                <p className="otros-textos">{seccionSobreEvento.rango}</p>
               </div>
             </div>
           </Carousel.Item>
 
           <Carousel.Item>
             <div className="sobreEvento-subtitulo">
-              <p>{seccionSobreEvento.subtitulo2}</p>
+              <p className="subtitulos-textos">
+                {seccionSobreEvento.subtitulo2}
+              </p>
             </div>
             <div className="sobreEvento-lugar-ubicacion">
               <img src={seccionHome.iconDonut} alt="icono-donut" />
               <div>
-                <p>{seccionSobreEvento.direccion}</p>
-                <p>{seccionSobreEvento.distrito}</p>
+                <p className="cuerpo-textos">{seccionSobreEvento.direccion}</p>
+                <p className="cuerpo-textos">{seccionSobreEvento.distrito}</p>
               </div>
               <img src={seccionHome.iconoPan} alt="icono-pan" />
             </div>

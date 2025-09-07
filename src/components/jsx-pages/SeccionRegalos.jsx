@@ -30,7 +30,7 @@ const SeccionRegalos = () => {
           <img src={seccionHome.iconoCroissant} alt="icono-croissant" />
           <img src={seccionHome.iconDonut} alt="icono-donut" />
         </div>
-        <p>{seccionRegalos.titulo}</p>
+        <p className="cuerpo-textos">{seccionRegalos.titulo}</p>
         <div>
           <img src={seccionHome.iconoCupcake} alt="icono-cupcake" />
           <img src={seccionHome.iconoPan} alt="icono-pan" />

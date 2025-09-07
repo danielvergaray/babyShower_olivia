@@ -17,7 +17,7 @@ const SeccionCarousel = () => {
           <img src={seccionHome.iconoHornoPanes} alt="" />
         </div>
 
-        <p>{seccionCarousel.titulo} </p>
+        <p className="cuerpo-textos">{seccionCarousel.titulo} </p>
       </div>
 
       <div className="slider">

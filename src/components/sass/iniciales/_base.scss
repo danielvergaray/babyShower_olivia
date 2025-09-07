@@ -2,15 +2,25 @@
 @import "../reutilizables/Tipografias";
 
 body {
-  font-family: "give-away";
   text-transform: uppercase;
-  color: $Principal-azul;
+
   p {
-    text-align: center;
-    line-height: 1;
-    font-size: 32px;
-    margin: 0;
     color: $Principal-azul;
+  }
+  .subtitulos-textos {
+    font-family: "abygaer";
+    font-size: 25px;
+  }
+  .cuerpo-textos {
+    font-family: "give-away";
+    font-size: 32px;
+    line-height: 1;
+    margin: 0;
+    text-align: center;
+  }
+  .otros-textos {
+    font-family: "give-away";
+    font-size: 16px;
   }
   button {
     padding: 20px 30px;
@@ -30,6 +40,10 @@ body {
     border: 1px solid $Principal-azul;
     outline: none;
     font-size: 20px;
+    font-family: "abygaer";
+  }
+  .dropdown {
+    font-family: "abygaer";
   }
 
   .seccion-contador,
@@ -43,8 +57,6 @@ body {
   }
 
   .seccion-sobreEvento,
-  .seccion-contador,
-  .seccion-carousel,
   .seccion-regalos,
   .seccion-formulario {
     padding: 150px 4vw;
@@ -101,12 +113,19 @@ body {
 
 @media (max-width: 846px) {
   body {
-    p {
-      font-size: 20px;
-      font-family: "abygaer";
+    .cuerpo-textos {
+      font-family: "give-away";
+      font-size: 18px;
+      line-height: 1;
+      margin: 0;
+      text-align: center;
+    }
+    .otros-textos {
+      font-family: "give-away";
+      font-size: 12px;
     }
     button {
-      font-size: 12px;
+      font-size: 14px;
     }
 
     input {
@@ -121,7 +140,7 @@ body {
     .sobreEvento-lugar-ubicacion,
     .seccion-regalos {
       img {
-        width: 40px;
+        width: 50px;
         margin: auto;
       }
     }
@@ -138,7 +157,6 @@ body {
     }
 
     .seccion-sobreEvento,
-    .seccion-contador,
     .seccion-carousel,
     .seccion-regalos,
     .seccion-formulario {

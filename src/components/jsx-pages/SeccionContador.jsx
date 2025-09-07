@@ -11,13 +11,15 @@ const SeccionContador = () => {
     <>
       <div className="contador-titulo">
         <img src={seccionHome.iconoCroissant} alt="icono-croissant" />
-        <p>{seccionContador.titulo}</p>
+        <p className="cuerpo-textos">{seccionContador.titulo}</p>
         <img src={seccionHome.iconoCupcake} alt="icono-cupcake" />
       </div>
       <div className="contador-subtitulo">
         <img src={seccionHome.iconDonut} alt="icono-donut" />
         <p
-        /* data-aos={
+          className="cuerpo-textos"
+
+          /* data-aos={
             animacionEntrada
           } data-aos-duration={duracionAnimacion1} */
         >

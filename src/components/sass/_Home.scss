@@ -22,9 +22,6 @@
     }
     .hero-fecha {
       padding: 20px 0;
-      p {
-        font-family: "abygaer";
-      }
     }
     .hero-flecha {
       font-size: 3rem;
@@ -33,12 +30,12 @@
   }
 
   .seccion-contador {
+    padding: 50px 0 100px;
     .contador-titulo {
       display: flex;
       margin: auto;
       width: 60%;
       p {
-        font-size: 32px;
         width: 77%;
       }
     }
@@ -48,10 +45,6 @@
       margin: auto;
       width: 70%;
       align-items: center;
-
-      p {
-        font-size: 32px;
-      }
     }
     .home-cuentaRegresiva {
       div {
@@ -64,18 +57,17 @@
         .contador-recuadro {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          padding-top: 0;
+          text-align: center;
           .contador-recuadro-numero {
             width: fit-content;
             padding-top: 0;
             .contador-recuadro-digito {
               width: 8rem;
-              height: 5rem;
+              height: 7rem;
               padding: 0;
 
               p {
-                font-size: 6rem;
+                font-size: 96px;
                 margin: auto;
                 font-family: "abygaer";
               }
@@ -107,24 +99,20 @@
         .carousel-inner {
           .carousel-item {
             height: 300px;
+            text-align: center;
             .sobreEvento-subtitulo {
               text-align: center;
               padding: 40px 0;
-              font-family: "abygaer";
             }
             .sobreEvento-fecha-hora {
               display: grid;
               grid-template-columns: 45% 10% 45%;
-              width: 50%;
+              width: 60%;
               margin: auto;
               padding-top: 20px;
 
-              p {
-                font-size: 20px;
-                font-family: "give-away";
-              }
               p:nth-child(1) {
-                font-size: 6rem;
+                font-size: 96px;
                 height: 6rem;
                 font-family: "abygaer";
               }
@@ -136,7 +124,7 @@
                 grid-column: 2;
                 margin: auto auto 20px;
                 img {
-                  width: 60px;
+                  width: 50px;
                 }
               }
               .sobreEvento-hora {
@@ -201,14 +189,14 @@
         display: flex;
         /* overflow-x: scroll; */
         width: calc(400px * 12); //Cantidad de imagenes * 2
-        animation: scroll 5s linear infinite alternate;
+        animation: scroll 10s linear infinite alternate;
 
         &:hover {
           animation-play-state: paused;
         }
         .slide {
           img {
-            height: 700px;
+            height: 500px;
             margin: 0 5px;
             perspective: 100px;
           }
@@ -221,7 +209,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-50px * 30)); //cantidad de iconos
+      transform: translateX(calc(-50px * 58)); //cantidad de iconos
     }
   }
 
@@ -259,7 +247,7 @@
 
           .formulario-icono {
             font-size: 40px;
-            top: 35px;
+            top: 30px;
             left: 85%;
             position: absolute;
             transform: translate(-50%, -50%);
@@ -268,6 +256,7 @@
         .dropdown {
           display: flex;
           justify-content: center;
+
           button {
             display: grid;
             grid-template-columns: 95% 5%;
@@ -388,7 +377,7 @@
     .seccion-regalos-frase {
       padding: 100px 0 50px 0;
       display: flex;
-      width: 60%;
+      width: 72%;
       margin: auto;
       p {
         margin: 0 auto;
@@ -414,6 +403,7 @@
 @media (max-width: 846px) {
   .hero-section {
     text-align: center;
+    height: 100dvh;
     .hero-imagenCabecera {
       img {
         width: 100%;
@@ -422,14 +412,13 @@
     .hero-titulo {
       padding-top: 40%;
       img {
-        width: 70%;
+        width: 85%;
       }
     }
     .hero-subtitulo {
       padding-top: 20px;
       p {
         letter-spacing: 10px;
-        font-size: 18px;
       }
     }
     .hero-fecha {
@@ -450,7 +439,7 @@
 
     .contador-titulo {
       display: flex;
-      line-height: 1;
+
       p {
         width: 65%;
       }
@@ -472,44 +461,40 @@
     }
 
     .home-cuentaRegresiva {
-      padding: 0;
-
       div {
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
-        width: 100%;
-        padding-top: 20px;
+        width: 70%;
+        padding: 20px 0 50px;
+        margin: auto;
+        align-items: center;
         .contador-recuadro {
           display: flex;
           flex-direction: column;
-          width: fit-content;
-          padding: 5px;
-          height: fit-content;
-
+          margin: 0;
+          padding: 0;
+          width: 120px;
           .contador-recuadro-numero {
+            margin: 0;
+            padding: 0;
             .contador-recuadro-digito {
-              width: fit-content;
-              height: 50px;
+              height: 4.5em;
               padding: 0;
-              border-radius: 90%;
-
+              width: fit-content;
               p {
-                font-size: 45px;
-                margin: auto;
+                font-size: 60px;
+
                 font-family: "abygaer";
               }
             }
           }
           .contador-texto {
-            margin-top: 0px;
             padding: 0;
-            p {
-              padding: 0px 5px;
+            .otros-textos {
               font-size: 15px;
-
-              font-family: "give-away";
-              text-align: center;
+              width: fit-content;
+              margin: 0;
             }
           }
         }
@@ -538,20 +523,16 @@
         .carousel-inner {
           .carousel-item {
             padding-top: 60px;
-            height: 300px;
+            height: 320px;
             .sobreEvento-subtitulo {
               padding-bottom: 40px;
+              text-align: center;
             }
             .sobreEvento-fecha-hora {
               display: grid;
               grid-template-columns: 45% 10% 45%;
               width: 100%;
-              margin: 0;
-
-              p {
-                font-size: 18px;
-                font-family: "give-away";
-              }
+              text-align: center;
               p:nth-child(1) {
                 font-size: 60px;
                 height: 3.5rem;
@@ -569,8 +550,9 @@
               display: flex;
               width: 90%;
               margin: auto;
-              p {
-                font-size: 18px;
+
+              :nth-child(3) {
+                width: 60px;
               }
             }
             .sobreEvento-btn {
@@ -592,6 +574,7 @@
 
         svg {
           cursor: pointer;
+          color: $Principal-azul;
         }
       }
     }
@@ -609,7 +592,6 @@
       }
       p {
         padding: 30px;
-
         width: 100%;
         margin: auto;
       }
@@ -620,7 +602,7 @@
         display: flex;
         /*  overflow-x: scroll; */
         width: calc(400px * 12); //Cantidad de imagenes * 2
-        animation: scroll 5s linear infinite alternate;
+        animation: scroll 10s linear infinite alternate;
 
         &:hover {
           animation-play-state: paused;
@@ -641,7 +623,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-50px * 30)); //cantidad de iconos
+      transform: translateX(calc(-50px * 68)); //cantidad de iconos
     }
   }
 
@@ -786,17 +768,18 @@
     .seccion-regalos-frase {
       padding: 100px 0 50px 0;
       display: flex;
-      width: 88%;
+      justify-content: center;
+      width: 100%;
       margin: auto;
       line-height: 1;
-      p {
-        margin: 0 auto;
-        width: 80%;
-      }
 
       div {
         display: flex;
         flex-direction: column;
+      }
+      .cuerpo-textos {
+        width: 61%;
+        margin: 0 10px;
       }
     }
     .seccion-regalos-btn {
