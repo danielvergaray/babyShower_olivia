@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import InfoContext from "./InfoContext";
-import imagenHome1 from "../../assets/imagenes/FONDO_01.png";
-import imagenHome2 from "../../assets/imagenes/FONDO_02.png";
 import tituloSeccionSobreEvento from "../../assets/imagenes/titulos/sub-sobreelevento.png";
 import tituloSeccionRegalos from "../../assets/imagenes/titulos/sub-listaderegalos.png";
 import tituloImagenPortada from "../../assets/imagenes/titulos/Titulo.png";
@@ -12,7 +10,7 @@ import imagen3 from "../../assets/imagenes/carousel/imagenCarousel_03.jpeg";
 import imagen4 from "../../assets/imagenes/carousel/imagenCarousel_04.jpg";
 import imagen5 from "../../assets/imagenes/carousel/imagenCarousel_05.jpeg";
 import imagen6 from "../../assets/imagenes/carousel/imagenCarousel_06.jpg";
-//import imagen7 from "../../assets/imagenes/carousel/imagenCarousel_07.jpeg";
+import imagen7 from "../../assets/imagenes/carousel/imagenCarousel_07.jpeg";
 import imagen8 from "../../assets/imagenes/carousel/imagenCarousel_08.jpg";
 import imagen9 from "../../assets/imagenes/carousel/imagenCarousel_09.jpg";
 import imagen10 from "../../assets/imagenes/carousel/imagenCarousel_10.jpg";
@@ -23,7 +21,6 @@ import iconDonut from "../../assets/imagenes/iconos/donut.png";
 import iconoHornoPanes from "../../assets/imagenes/iconos/hornoypanes.png";
 import iconoMuffin from "../../assets/imagenes/iconos/muffin.png";
 import iconoPan from "../../assets/imagenes/iconos/pan.png";
-import imagenDesktop from "../../assets/imagenes/FOTODESKTOP.jpg";
 
 import {
   getFirestore,
@@ -41,11 +38,8 @@ const InfoContextProvider = ({ children }) => {
   const informacion = {
     seccionHome: {
       imagenCabecera: cabeceraImagen,
-      imagen1: imagenHome1,
-      imagen2: imagenHome2,
       tituloImagenPortada: tituloImagenPortada,
       fecha: "28 de septiembre",
-      imagenDesktop: imagenDesktop,
       nombre: "Olivia",
       iconoCroissant: iconoCroissant,
       iconoCupcake: iconoCupcake,
@@ -102,9 +96,9 @@ const InfoContextProvider = ({ children }) => {
         {
           imagenCarousel: imagen6,
         },
-        /*  {
+        {
           imagenCarousel: imagen7,
-        }, */
+        },
         {
           imagenCarousel: imagen8,
         },
