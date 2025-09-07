@@ -5,7 +5,7 @@ const CuentaRegresiva = () => {
   const { informacion } = useContext(InfoContext);
   const { seccionContador } = informacion;
 
-  /* const [year] = useState(new Date().getFullYear()); */ /* nos da el año actual */
+  const [year] = useState(new Date().getFullYear()); /* nos da el año actual */
   /* se usa [year]  porque solamente nos importa el estado y no la funcion de actualizacion*/
   const [timeLeft, setTimeLeft] = useState(
     calculateTimeLeft()
@@ -22,9 +22,8 @@ const CuentaRegresiva = () => {
 
   function calculateTimeLeft() {
     let difference =
-      +new Date(
-        `${seccionContador.mesEvento}/${seccionContador.diaEvento}/${seccionContador.anioEvento}`
-      ) - +new Date(); /* calcula el tiempo restante entre 2 fechas */
+      +new Date(`9/28/${year}`) -
+      +new Date(); /* calcula el tiempo restante entre 2 fechas */
     let timeLeft = {};
 
     if (difference > 0) {
