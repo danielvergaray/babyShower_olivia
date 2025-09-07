@@ -7,15 +7,15 @@ import tituloSeccionRegalos from "../../assets/imagenes/titulos/sub-listaderegal
 import tituloImagenPortada from "../../assets/imagenes/titulos/Titulo.png";
 import cabeceraImagen from "../../assets/imagenes/Cabecera.png";
 import imagen1 from "../../assets/imagenes/carousel/imagenCarousel_01.jpeg";
-//import imagen2 from "../../assets/imagenes/carousel/imagenCarousel_02.jpg";
+import imagen2 from "../../assets/imagenes/carousel/imagenCarousel_02.jpg";
 import imagen3 from "../../assets/imagenes/carousel/imagenCarousel_03.jpeg";
-//import imagen4 from "../../assets/imagenes/carousel/imagenCarousel_04.jpg";
+import imagen4 from "../../assets/imagenes/carousel/imagenCarousel_04.jpg";
 import imagen5 from "../../assets/imagenes/carousel/imagenCarousel_05.jpeg";
-//import imagen6 from "../../assets/imagenes/carousel/imagenCarousel_06.jpg";
-import imagen7 from "../../assets/imagenes/carousel/imagenCarousel_07.jpeg";
-//import imagen8 from "../../assets/imagenes/carousel/imagenCarousel_08.jpg";
+import imagen6 from "../../assets/imagenes/carousel/imagenCarousel_06.jpg";
+//import imagen7 from "../../assets/imagenes/carousel/imagenCarousel_07.jpeg";
+import imagen8 from "../../assets/imagenes/carousel/imagenCarousel_08.jpg";
 import imagen9 from "../../assets/imagenes/carousel/imagenCarousel_09.jpg";
-//import imagen10 from "../../assets/imagenes/carousel/imagenCarousel_10.jpg";
+import imagen10 from "../../assets/imagenes/carousel/imagenCarousel_10.jpg";
 import iconoCroissant from "../../assets/imagenes/iconos/croissant.png";
 import iconoCupcake from "../../assets/imagenes/iconos/cupcake.png";
 import iconoCupcakePan from "../../assets/imagenes/iconos/cupcakeypan.png";
@@ -87,33 +87,33 @@ const InfoContextProvider = ({ children }) => {
         {
           imagenCarousel: imagen1,
         },
-        /*   {
+        {
           imagenCarousel: imagen2,
-        }, */
+        },
         {
           imagenCarousel: imagen3,
         },
-        /*  {
+        {
           imagenCarousel: imagen4,
-        }, */
+        },
         {
           imagenCarousel: imagen5,
         },
-        /*  {
-          imagenCarousel: imagen6,
-        }, */
         {
-          imagenCarousel: imagen7,
+          imagenCarousel: imagen6,
         },
         /*  {
-          imagenCarousel: imagen8,
+          imagenCarousel: imagen7,
         }, */
+        {
+          imagenCarousel: imagen8,
+        },
         {
           imagenCarousel: imagen9,
         },
-        /*  {
+        {
           imagenCarousel: imagen10,
-        }, */
+        },
       ],
     },
 
