@@ -80,4 +80,4 @@ Thumbs.db
 # (usa Cloudinary / Firebase Storage en vez de subirlas al repo)
 # ==========================
 /public/uploads
-/src/assets/imagenes
+
