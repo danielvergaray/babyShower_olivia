@@ -37,7 +37,10 @@ const SeccionRegalos = () => {
         </div>
       </div>
       <div className="seccion-regalos-btn">
-        <Link to="lista-regalos" target="_blank">
+        <Link
+          to="https://baby-shower-olivia-lista-regalos.vercel.app/"
+          target="_blank"
+        >
           <button>{seccionRegalos.boton}</button>
         </Link>
       </div>
