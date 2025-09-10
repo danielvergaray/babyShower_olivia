@@ -24,7 +24,12 @@ const SeccionCarousel = () => {
         <div className="slider-track">
           {seccionCarousel.carouselImagenes.map((imagen, index) => (
             <div className="slide" key={index}>
-              <img src={imagen.imagenCarousel} alt="" />
+              <img src={imagen.imagenCarousel} alt="foto-DanielyPaola" />
+            </div>
+          ))}
+          {seccionCarousel.carouselImagenes.map((imagen, index) => (
+            <div className="slide" key={`dup-${index}`}>
+              <img src={imagen.imagenCarousel} alt="foto-DanielyPaola" />
             </div>
           ))}
         </div>

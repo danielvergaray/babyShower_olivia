@@ -40,10 +40,22 @@ body {
     border: 1px solid $Principal-azul;
     outline: none;
     font-size: 20px;
-    font-family: "abygaer";
+    font-family: "give-away";
+    text-transform: uppercase;
+    color: $Principal-azul;
+  }
+  ::placeholder {
+    font-family: "give-away";
+    color: $Principal-azul;
   }
   .dropdown {
-    font-family: "abygaer";
+    font-family: "give-away";
+    color: $Principal-azul;
+  }
+  .toastify-toast {
+    background-color: $Principal-azul !important;
+    color: white;
+    font-family: "give-away";
   }
 
   .seccion-contador,
@@ -60,6 +72,12 @@ body {
   .seccion-regalos,
   .seccion-formulario {
     padding: 150px 4vw;
+
+    button {
+      &:hover {
+        background-color: $Secundario-naranja;
+      }
+    }
   }
 
   .hero-section,
@@ -135,6 +153,11 @@ body {
       outline: none;
       font-size: 15px;
     }
+    ::placeholder {
+      font-family: "give-away";
+      color: $Principal-azul;
+    }
+
     .seccion-contador,
     .sobreEvento-icono,
     .sobreEvento-lugar-ubicacion,

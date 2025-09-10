@@ -4,54 +4,20 @@ import InfoContext from "../context/InfoContext";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { FaCheckCircle } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
 
-const PopUpCreator = ({
-  tipoModal,
-  show,
-  setShow,
-  userSelected,
-  infoRegaloSelected,
-}) => {
+const PopUpCreator = ({ tipoModal, show, setShow, userSelected }) => {
   const {
     deleteUsersInfoAdministrador,
     setIipoPopUpFormulario,
     iconoMuffin,
-    getUserDataName,
     usuarioAprobado,
-    userData,
-    setUserData,
   } = useContext(InfoContext);
-  const [listaRegalosSection, setListaRegalosSection] = useState("");
-  const [showInputDedicatoria, setShowInputDedicatoria] = useState(false);
+
   const [isButtonListaRegalosDisabled, setIsButtonListaRegalosDisabled] =
     useState(true);
-  //const navigate = useNavigate();
+
   const handleClose = () => {
     setShow(false);
-  };
-
-  const handleCloseListaRegalos = () => {
-    //navigate("/lista-regalos");
-    setShow(false);
-    setShowInputDedicatoria(false);
-    setListaRegalosSection("");
-    setUserData((prev) => ({
-      ...prev,
-      nombre: "",
-    }));
-  };
-  const handleSiguienteButton = () => {
-    const regaloSelectedId = infoRegaloSelected.id;
-    const regaloSelectedNombre = infoRegaloSelected.nombre;
-    /*  navigate(
-      `/lista-regalos/${regaloSelectedNombre}${regaloSelectedId}/confirmacionRegalo`
-    ); */
-    setListaRegalosSection("confirmacionRegalo");
-  };
-  const handleListaRegaloEnviarButton = () => {
-    setListaRegalosSection("agradecimiento");
   };
 
   useEffect(() => {
@@ -73,112 +39,7 @@ const PopUpCreator = ({
         keyboard={false}
         dialogClassName="modal-lg"
       >
-        {tipoModal === "lista-regalos" ? (
-          <>
-            {listaRegalosSection === "confirmacionRegalo" ? (
-              <div className="modal-listaRegalos modal-listaRegalos-confirmacion ">
-                <Modal.Header>
-                  <p>
-                    <IoCloseCircleOutline onClick={handleCloseListaRegalos} />
-                  </p>
-                </Modal.Header>
-
-                <Modal.Body>
-                  <div>
-                    <p>ingresa tu nombre para completar la reserva</p>
-                  </div>
-                  <div className="seccion-formulario-regalos">
-                    <form action="">
-                      <input
-                        type="text"
-                        name="nombre"
-                        pattern="^[a-zA-Z ]*$" // Acepta solo letras (mayúsculas y minúsculas) y espacios
-                        title="Solo se permiten letras (mayúsculas y minúsculas) y espacios"
-                        placeholder="NOMBRE Y APELLIDO"
-                        onChange={getUserDataName}
-                        required
-                      />
-                    </form>
-                    <p className="formulario-icono">
-                      {!usuarioAprobado && userData.nombre.length > 0 ? (
-                        <IoMdCloseCircle />
-                      ) : usuarioAprobado && userData.nombre.length > 0 ? (
-                        <FaCheckCircle />
-                      ) : null}
-                    </p>
-                  </div>
-
-                  {usuarioAprobado && (
-                    <p
-                      onClick={() => setShowInputDedicatoria(true)}
-                      className="modal-listaRegalos-linkDedicatoria"
-                    >
-                      ¿Deseas agregar una dedicatoria?
-                    </p>
-                  )}
-                  {showInputDedicatoria && usuarioAprobado && (
-                    <div className="form-dedicatoria">
-                      <form>
-                        <input type="text" placeholder="Escribe tu mensaje" />
-                      </form>
-                    </div>
-                  )}
-                  <button
-                    className={
-                      isButtonListaRegalosDisabled ? "disabledButton" : null
-                    }
-                    disabled={isButtonListaRegalosDisabled}
-                    onClick={handleListaRegaloEnviarButton}
-                  >
-                    enviar
-                  </button>
-                </Modal.Body>
-              </div>
-            ) : listaRegalosSection === "agradecimiento" ? (
-              <div className="modal-listaRegalos modal-listaRegalos-confirmacion agradecimiento">
-                <Modal.Header>
-                  <p>
-                    <IoCloseCircleOutline onClick={handleCloseListaRegalos} />
-                  </p>
-                </Modal.Header>
-
-                <Modal.Body>
-                  <img src={iconoMuffin} alt="icono-muffin" />
-
-                  <p>
-                    gracias por reservar este regalo recuerda comprarlo antes
-                    del evento
-                  </p>
-                </Modal.Body>
-              </div>
-            ) : (
-              <div className="modal-listaRegalos">
-                <Modal.Header>
-                  <p>
-                    <IoCloseCircleOutline onClick={handleCloseListaRegalos} />
-                  </p>
-                </Modal.Header>
-
-                <Modal.Body>
-                  <div className="listaRegalos-imagen">
-                    <img
-                      src={infoRegaloSelected.linkImagen}
-                      alt="imagen-regalo"
-                    />
-                    <p>{infoRegaloSelected.nombre}</p>
-                  </div>
-                  <div className="listaRegalos-texto">
-                    <p>
-                      elegiste algo muy especial. presiona siguiente para
-                      continuar
-                    </p>
-                    <button onClick={handleSiguienteButton}>siguiente</button>
-                  </div>
-                </Modal.Body>
-              </div>
-            )}
-          </>
-        ) : tipoModal === "administrador" ? (
+        {tipoModal === "administrador" ? (
           <>
             <Modal.Header closeButton>
               <Modal.Title>Gestion de invitados</Modal.Title>
@@ -210,7 +71,7 @@ const PopUpCreator = ({
             </Modal.Header>
             <Modal.Body>
               <img src={iconoMuffin} alt="icono-muffin" />
-              <p>Ya has registrado</p>
+              <p>Ya te has registrado</p>
               <p>anteriormente, comunícate</p>
               <p>con el administrador</p>
             </Modal.Body>
@@ -230,10 +91,10 @@ const PopUpCreator = ({
             <Modal.Body>
               <img src={iconoMuffin} alt="icono-muffin" />
               <p>Gracias por confirmar.</p>
-              <p>te esperamos el domingo 28</p>
+              <p>te esperamos</p>
             </Modal.Body>
             <Modal.Footer>
-              <Link to="/lista-regalos">
+              <Link to="https://baby-shower-olivia-lista-regalos.vercel.app/">
                 <button>VER LISTA DE REGALOS</button>
               </Link>
             </Modal.Footer>
@@ -249,7 +110,9 @@ const PopUpCreator = ({
             </Modal.Header>
             <Modal.Body>
               <img src={iconoMuffin} alt="icono-muffin" />
-              <p>Lamentamos no poder contar contigo</p>
+              <p style={{ paddingTop: "20px" }}>
+                Lamentamos no poder contar contigo
+              </p>
             </Modal.Body>
           </div>
         ) : null}

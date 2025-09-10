@@ -163,6 +163,9 @@
         svg {
           cursor: pointer;
         }
+        :hover {
+          color: $Secundario-naranja;
+        }
       }
     }
   }
@@ -185,12 +188,13 @@
     }
 
     .slider {
-      padding-top: 100px;
+      overflow: hidden;
+
+      width: 100%;
       .slider-track {
         display: flex;
-        /* overflow-x: scroll; */
-        width: calc(400px * 12); //Cantidad de imagenes * 2
-        animation: scroll 10s linear infinite alternate;
+        width: max-content; // cantidad * 2
+        animation: scroll 15s linear infinite; // siempre hacia la izq
 
         &:hover {
           animation-play-state: paused;
@@ -199,7 +203,6 @@
           img {
             height: 500px;
             margin: 0 5px;
-            perspective: 100px;
           }
         }
       }
@@ -210,7 +213,7 @@
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-50px * 58)); //cantidad de iconos
+      transform: translateX(-50%); //cantidad de iconos
     }
   }
 
@@ -222,8 +225,9 @@
       display: grid;
       grid-template-columns: 45% 55%;
       .seccion-formulario-titulo {
-        margin: auto;
+        margin: 0;
         padding-left: 50px;
+        grid-column: 1;
         p {
           text-align: left;
         }
@@ -235,14 +239,12 @@
       .seccion-formulario-usuario {
         height: fit-content;
         position: relative;
-
+        grid-column: 2;
         form {
           display: flex;
           justify-content: center;
           input {
             width: 80%;
-          }
-          ::placeholder {
             color: $Principal-azul;
           }
 
@@ -252,6 +254,9 @@
             left: 85%;
             position: absolute;
             transform: translate(-50%, -50%);
+          }
+          .formulario-icono-x {
+            color: $Secundario-naranja;
           }
         }
         .dropdown {
@@ -290,78 +295,77 @@
         }
         .formulario-usuario-linkInvitados {
           margin: auto;
-          padding: 10px 0 10px 10%;
+          padding: 10px 0 10px 12%;
           p {
             text-decoration: underline;
-            font-size: 1rem;
             margin: 0;
-            text-align: left;
+
             cursor: pointer;
-            width: fit-content;
           }
         }
-      }
 
-      .seccion-formulario-invitados {
-        grid-column: 2;
-        .seccion-formulario-invitadosInput {
-          display: grid;
-          grid-template-columns: 80% 20%;
-          width: 100%;
-          padding: 20px 6% 0;
-          form {
-            grid-column: 1;
+        .seccion-formulario-invitados {
+          .seccion-formulario-invitadosInput {
+            display: grid;
+            grid-template-columns: 80% 20%;
             width: 100%;
-            display: flex;
-            justify-content: center;
-            input {
-              width: 90%;
+            padding: 20px 6% 20px;
+            form {
+              grid-column: 1;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              input {
+                width: 90%;
+              }
             }
-          }
-          .icono-agregar {
-            grid-column: 2;
-            margin: auto 0;
-            svg {
-              cursor: pointer;
-              color: $Principal-azul;
-              font-size: 65px;
-            }
-          }
-        }
-        .seccion-formulario-invitadosAgregados {
-          grid-column: 2;
-          margin: auto;
-          padding-left: 10%;
-          padding-bottom: 50px;
-
-          div {
-            display: flex;
-            :nth-child(2) {
-              padding-left: 10px;
-              font-size: 1.25rem;
-              color: $Principal-azul;
+            .icono-agregar {
+              grid-column: 2;
               margin: auto 0;
+              svg {
+                cursor: pointer;
+                color: $Principal-azul;
+                font-size: 50px;
+              }
             }
-            p {
-              margin: 0;
-              font-size: 1.5rem;
-              text-align: left;
-              text-transform: capitalize;
+          }
+          .seccion-formulario-invitadosAgregados {
+            padding-left: 10%;
+            padding-bottom: 20px;
+            width: 80%;
+            div {
+              display: grid;
+              grid-template-columns: 80% 20%;
+
+              :nth-child(2) {
+                padding-left: 10px;
+                font-size: 1.25rem;
+                color: $Principal-azul;
+                margin: auto 0;
+                cursor: pointer;
+                grid-column: 2;
+              }
+              p {
+                margin: 0;
+                font-size: 1.5rem;
+                font-family: "give-away";
+                grid-column: 1;
+              }
             }
           }
         }
-      }
-      .seccion-formulario-btn {
-        grid-column: 2;
-        width: 80%;
-        margin: auto;
-        display: flex;
-        button {
-          border-radius: 9999px;
-        }
-        .disabledButton {
-          background-color: gray;
-          cursor: auto;
+        .seccion-formulario-btn {
+          width: 80%;
+          margin: auto;
+          display: flex;
+          button {
+            border-radius: 9999px;
+          }
+
+          .disabledButton {
+            background-color: gray;
+            cursor: auto;
+          }
         }
       }
     }
@@ -650,18 +654,23 @@
       .seccion-formulario-usuario {
         height: fit-content;
         position: relative;
+        margin: 0 15px;
         form {
           display: flex;
           justify-content: center;
           input {
             width: 100%;
           }
+
           .formulario-icono {
             font-size: 35px;
-            top: 30px;
+            top: 25px;
             left: 92%;
             position: absolute;
             transform: translate(-50%, -50%);
+          }
+          .formulario-icono-x {
+            color: $Secundario-naranja;
           }
         }
         .dropdown {
@@ -697,20 +706,20 @@
 
           p {
             text-decoration: underline;
-            font-size: 18px;
+            font-size: 15px;
             margin: 0;
             text-align: left;
+            padding-left: 5px;
           }
         }
       }
 
       .seccion-formulario-invitados {
-        padding-top: 50px;
+        padding-top: 20px;
         .seccion-formulario-invitadosInput {
           display: grid;
-          grid-template-columns: 80% 20%;
+          grid-template-columns: 87% 13%;
           margin: auto;
-
           form {
             display: flex;
 
@@ -719,9 +728,13 @@
             }
           }
           .icono-agregar {
-            font-size: 3.5rem;
-            padding-bottom: 5px;
             grid-column: 2;
+            color: $Principal-azul;
+            text-align: right;
+            margin: auto;
+            svg {
+              font-size: 50px;
+            }
           }
         }
         .seccion-formulario-invitadosAgregados {
@@ -741,9 +754,8 @@
             }
             p {
               margin: 0;
-
               text-align: left;
-              text-transform: capitalize;
+              font-family: "give-away";
             }
           }
         }
@@ -752,10 +764,9 @@
         width: 90%;
         margin: auto;
         display: flex;
-        padding: 50px 0;
+        padding: 20px 0;
         button {
           border-radius: 9999px;
-
           padding: 20px 30px;
         }
         .disabledButton {

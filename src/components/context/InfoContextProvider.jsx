@@ -51,7 +51,6 @@ const InfoContextProvider = ({ children }) => {
     },
 
     seccionContador: {
-      //tituloImagen: tituloSeccionContador,
       titulo: "hay un pancito en el horno y ya casi es hora de conocerlo",
       subtitulo: "ven a celebrar juntos su llegada",
       diaEvento: 28,
@@ -114,13 +113,14 @@ const InfoContextProvider = ({ children }) => {
     seccionRegalos: {
       tituloImagen: tituloSeccionRegalos,
       titulo:
-        "con el pancito creciendo, hay cosas que ya empieza a necesitar. si deseas hacerle un regalo, puedes ver las opciones en esta lista",
+        "Tu presencia es el mejor regalo, pero si deseas llevar un detallito para Olivia, hemos preparado esta lista con opciones",
       boton: "ver lista de regalos",
     },
 
     seccionForm: {
-      titulo: "Queremos que este día este lleno de personas que queremos mucho",
-      subtitulo: "si puedes venir, confirma tu asistencia",
+      titulo:
+        "Un momento especial que queremos compartir con quienes queremos.",
+      subtitulo: "Si puedes venir, confirmanos tu asistencia",
       boton: "enviar",
     },
 
@@ -190,7 +190,7 @@ const InfoContextProvider = ({ children }) => {
         if (existingData.respuesta) {
           setIipoPopUpFormulario("usuarioYaRegistrado");
         } else {
-          if (respuestaAsistencia === "Sí") {
+          if (respuestaAsistencia === "Si") {
             await updateDoc(docRef, {
               respuesta: respuestaAsistencia,
               regaloEscogido: "",
@@ -278,6 +278,7 @@ const InfoContextProvider = ({ children }) => {
   /* Esta parte se usa para que se verifique el nombre del usuario letra a letra */
 
   const [usuarioAprobado, setUsuarioAprobado] = useState(false);
+  const [userTypedObject, setUserTypedObject] = useState({});
 
   useEffect(() => {
     const db = getFirestore();
@@ -295,8 +296,10 @@ const InfoContextProvider = ({ children }) => {
           const docRef = querySnapshot.docs[0].ref; //accede al primer documento devuelto en la consulta y devuelve una referencia del documento.
           const existingData = querySnapshot.docs[0].data(); //evuelve los datos del documento en forma de objeto
           setUsuarioAprobado(true);
+          setUserTypedObject(existingData);
         } else {
           setUsuarioAprobado(false);
+          setUserTypedObject({});
         }
       })
 
@@ -307,7 +310,6 @@ const InfoContextProvider = ({ children }) => {
         respuesta: "",
         mensaje: "",
       }); */
-        console.log("registrado");
       })
       .catch((error) => {
         console.error("Error al enviar datos a Firebase: ", error);
@@ -383,6 +385,8 @@ const InfoContextProvider = ({ children }) => {
     setIipoPopUpFormulario,
     actualizarRespuestaDeinvitadosDelUsuario,
     iconoMuffin,
+    setUserTypedObject,
+    userTypedObject,
   };
 
   return (

@@ -3,19 +3,20 @@ import InfoContext from "../context/InfoContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import PopUpCreator from "../modal/PopUpCreator";
 import Dropdown from "react-bootstrap/Dropdown";
-import { BsChevronDown } from "react-icons/bs";
-import { HiPlusCircle } from "react-icons/hi";
-import { FaMinusCircle } from "react-icons/fa";
 import ToastifyComponent from "../toastify/ToastifyComponent";
 import { toast } from "react-toastify";
-import { FaCheckCircle } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
+import { BsChevronDown } from "react-icons/bs";
+import { IoIosAddCircle } from "react-icons/io";
+import { FaMinusCircle } from "react-icons/fa";
+import { IoIosCloseCircle } from "react-icons/io";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 
 const SeccionFormulario = () => {
   const {
     informacion,
     loading,
-    getUserData,
+    userTypedObject,
+    setUserTypedObject,
     getUserDataName,
     handleEnviarFormulario,
     userData,
@@ -32,8 +33,6 @@ const SeccionFormulario = () => {
 
   const [showInputInvitado, setShowInputInvitado] = useState(false);
 
-  const [usuarioConfirmado, setUsuarioConfirmado] = useState(false);
-
   const [dropdownOptionSelected, setDropdownOptionSelected] = useState(
     "Confirma tu asistencia"
   );
@@ -41,8 +40,6 @@ const SeccionFormulario = () => {
   const [userGuests, setUserGuests] = useState([]);
   const [guestNameTyped, setGuestNameTyped] = useState("");
   const [guestNameSanitized, setGuestNameSanitized] = useState("");
-  /* const [noGuestVacancyNotification, setNoGuestVacancyNotification] =
-    useState(false); */
 
   const handleUserGuest = (event) => {
     const { name, value } = event.target;
@@ -93,6 +90,12 @@ const SeccionFormulario = () => {
     }
   }, [usuarioAprobado, dropdownOptionSelected]);
 
+  useEffect(() => {
+    if (!usuarioAprobado) {
+      setDropdownOptionSelected("Confirma tu asistencia");
+    }
+  }, [usuarioAprobado]);
+
   return (
     <>
       <ToastifyComponent />
@@ -122,9 +125,9 @@ const SeccionFormulario = () => {
             />
             <p className="formulario-icono">
               {!usuarioAprobado && userData.nombre.length > 0 ? (
-                <IoMdCloseCircle />
+                <IoIosCloseCircle className="formulario-icono-x" />
               ) : usuarioAprobado && userData.nombre.length > 0 ? (
-                <FaCheckCircle />
+                <IoIosCheckmarkCircle />
               ) : null}
             </p>
           </form>
@@ -138,8 +141,8 @@ const SeccionFormulario = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => setDropdownOptionSelected("Sí")}>
-                Sí
+              <Dropdown.Item onClick={() => setDropdownOptionSelected("Si")}>
+                Si
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={() => {
@@ -152,9 +155,10 @@ const SeccionFormulario = () => {
             </Dropdown.Menu>
           </Dropdown>
 
-          {dropdownOptionSelected === "Sí" && usuarioAprobado && (
+          {dropdownOptionSelected === "Si" && usuarioAprobado && (
             <div className="formulario-usuario-linkInvitados">
               <p
+                className="otros-textos"
                 onClick={() => {
                   {
                     setShowInputInvitado(!showInputInvitado);
@@ -166,59 +170,65 @@ const SeccionFormulario = () => {
               </p>
             </div>
           )}
-        </div>
 
-        <div className="seccion-formulario-invitados">
-          {dropdownOptionSelected === "Sí" &&
+          {dropdownOptionSelected === "Si" &&
             usuarioAprobado &&
             showInputInvitado && (
-              <div className="seccion-formulario-invitadosInput">
-                <form action="">
-                  <label htmlFor="nombre"></label>
-                  <input
-                    type="text"
-                    name="nombre"
-                    pattern="^[a-zA-Z ]*$" // Acepta solo letras (mayúsculas y minúsculas) y espacios
-                    title="Solo se permiten letras (mayúsculas y minúsculas) y espacios"
-                    placeholder="NOMBRE Y APELLIDO DEL INVITADO"
-                    onChange={handleUserGuest}
-                    value={guestNameTyped}
-                    required
-                  />
-                </form>
-                <div onClick={handleAddGuest} className="icono-agregar">
-                  <HiPlusCircle />
+              <div className="seccion-formulario-invitados">
+                <div className="seccion-formulario-invitadosInput">
+                  <form action="">
+                    <label htmlFor="nombre"></label>
+                    <input
+                      type="text"
+                      name="nombre"
+                      pattern="^[a-zA-Z ]*$" // Acepta solo letras (mayúsculas y minúsculas) y espacios
+                      title="Solo se permiten letras (mayúsculas y minúsculas) y espacios"
+                      placeholder="NOMBRE Y APELLIDO"
+                      onChange={handleUserGuest}
+                      value={guestNameTyped}
+                      required
+                    />
+                  </form>
+                  <div onClick={handleAddGuest} className="icono-agregar">
+                    <IoIosAddCircle />
+                  </div>
                 </div>
+                {userGuests.length > 0 && (
+                  <div className="seccion-formulario-invitadosAgregados">
+                    {userGuests.map((guest, index) => (
+                      <div key={index}>
+                        <p>{guest}</p>
+                        <p onClick={() => deleteUserGuest(guest)}>
+                          <FaMinusCircle />
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
 
-          <div className="seccion-formulario-invitadosAgregados">
-            {userGuests.map((guest, index) => (
-              <div key={index}>
-                <p>{guest}</p>
-                <p onClick={() => deleteUserGuest(guest)}>
-                  <FaMinusCircle />
-                </p>
-              </div>
-            ))}
+          <div className="seccion-formulario-btn">
+            <button
+              disabled={isButtonsDisabled}
+              className={isButtonsDisabled ? "disabledButton" : ""}
+              onClick={(event) => {
+                handleEnviarFormulario(
+                  event,
+                  dropdownOptionSelected,
+                  userGuests
+                );
+
+                // Reiniciar valores después de enviar
+                setDropdownOptionSelected("Confirma tu asistencia");
+                setUserGuests([]);
+                setShowInputInvitado(false);
+                setUserTypedObject({});
+              }}
+            >
+              Enviar
+            </button>
           </div>
-        </div>
-
-        <div className="seccion-formulario-btn">
-          <button
-            disabled={isButtonsDisabled}
-            className={isButtonsDisabled ? "disabledButton" : ""}
-            onClick={(event) => {
-              handleEnviarFormulario(event, dropdownOptionSelected, userGuests);
-
-              // Reiniciar valores después de enviar
-              setDropdownOptionSelected("Confirma tu asistencia");
-              setUserGuests([]);
-              setShowInputInvitado(false);
-            }}
-          >
-            Enviar
-          </button>
         </div>
       </div>
     </>
