@@ -12,15 +12,17 @@
   }
   .modal-header {
     border-bottom: none !important;
-
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
     svg {
       cursor: pointer;
-    }
-
-    p {
+      font-size: 35px;
       text-align: right;
-      width: 100%;
-      font-size: 45px;
+      color: $Principal-azul;
+      &:hover {
+        color: $Secundario-naranja;
+      }
     }
   }
 
@@ -32,7 +34,7 @@
       padding: 20px 0;
     }
     p {
-      font-size: 25px;
+      font-size: 20px;
       line-height: 1;
       margin: auto;
     }
@@ -42,8 +44,12 @@
     margin: auto;
     border-top: none !important;
     button {
-      font-size: 20px;
+      font-size: 12px;
       font-family: "abygaer";
+
+      &:hover {
+        background-color: $Secundario-naranja;
+      }
     }
   }
 
@@ -67,12 +73,11 @@
     display: flex;
     justify-content: right;
     padding: 0;
-    p {
-      font-size: 35px;
-      margin: 0;
-    }
+
     svg {
       cursor: pointer;
+      font-size: 35px;
+      color: $Principal-azul;
     }
   }
   .modal-body {

@@ -82,11 +82,9 @@ const PopUpCreator = ({ tipoModal, show, setShow, userSelected }) => {
         ) : tipoModal === "confirmacionPositiva" ? (
           <div className="modal-confirmacionInvitacion">
             <Modal.Header>
-              <p>
-                <IoCloseCircleOutline
-                  onClick={() => setIipoPopUpFormulario("")}
-                />
-              </p>
+              <IoCloseCircleOutline
+                onClick={() => setIipoPopUpFormulario("")}
+              />
             </Modal.Header>
             <Modal.Body>
               <img src={iconoMuffin} alt="icono-muffin" />

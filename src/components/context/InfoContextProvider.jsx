@@ -195,7 +195,6 @@ const InfoContextProvider = ({ children }) => {
           if (respuestaAsistencia === "Si") {
             await updateDoc(docRef, {
               respuesta: respuestaAsistencia,
-              regaloEscogido: "",
               invitadosConfirmados: userGuests,
             });
             await actualizarRespuestaDeinvitadosDelUsuario(userGuests);
