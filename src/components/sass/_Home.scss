@@ -203,6 +203,7 @@
 
     .slider {
       overflow: hidden;
+
       width: 100%;
       .slider-track {
         display: flex;
@@ -632,13 +633,13 @@
     .slider {
       overflow: hidden;
       width: 100%;
-      min-height: 250px;
       .slider-track {
         display: flex;
-        animation: scroll 10s linear infinite;
-        /* min-width: 2000px; */
-        width: calc(375px * 40);
-        width: max-content;
+        overflow-x: scroll;
+        width: calc(400px * 12); //Cantidad de imagenes * 2
+        animation: scroll 10s linear infinite alternate;
+        width: max-content; // cantidad * 2
+        animation: scroll 15s linear infinite; // siempre hacia la izq
 
         .slide {
           img {
