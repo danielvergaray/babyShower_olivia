@@ -25,14 +25,18 @@ const Home = () => {
         <div className="hero-imagenCabecera">
           <img src={seccionHome.imagenCabecera} alt="imagen-toldo" />
         </div>
-        <div className="hero-subtitulo" data-aos={animacionEntrada}>
+        <div
+          className="hero-subtitulo
+        animate__animated animate__fadeIn
+         
+        "
+        >
           <p className="cuerpo-textos">Bienvenida {seccionHome.nombre}</p>
         </div>
         <div
-          className="hero-titulo"
-          data-aos={animacionEntrada}
-          data-aos-duration={duracionAnimacion1}
-          data-aos-offset="200"
+          className="hero-titulo
+          animate__animated animate__fadeIn
+           animate__delay-1s"
         >
           <img
             className="titulo-imagen"
@@ -41,10 +45,9 @@ const Home = () => {
           />
         </div>
         <div
-          className="hero-fecha"
-          data-aos={animacionEntrada}
-          data-aos-duration={duracionAnimacion1}
-          data-aos-offset="350"
+          className="hero-fecha
+          animate__animated animate__fadeIn
+          animate__delay-2s"
         >
           <p className="subtitulos-textos">{seccionHome.fecha}</p>
         </div>
