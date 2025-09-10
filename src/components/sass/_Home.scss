@@ -632,11 +632,14 @@
     .slider {
       overflow: hidden;
       width: 100%;
+      min-height: 250px;
       .slider-track {
         display: flex;
-        animation: scroll 5s linear infinite;
+        animation: scroll 10s linear infinite;
         /* min-width: 2000px; */
-        width: calc(200px * 20);
+        width: calc(375px * 40);
+        width: max-content;
+
         .slide {
           img {
             height: 500px;
