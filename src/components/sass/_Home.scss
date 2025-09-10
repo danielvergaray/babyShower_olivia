@@ -631,6 +631,9 @@
     }
 
     .slider {
+      overflow: hidden;
+
+      width: 100%;
       .slider-track {
         display: flex;
         width: calc(400px * 12); //Cantidad de imagenes * 2
@@ -642,7 +645,7 @@
           img {
             height: 500px;
             margin: 0 5px;
-            perspective: 100px;
+            /* perspective: 100px; */
           }
         }
       }
