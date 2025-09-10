@@ -13,16 +13,16 @@ const SeccionCarousel = () => {
           <img
             src={seccionHome.iconoHornoPanes}
             alt="imagenes_panes_horno"
-            data-aos={animacionEntrada}
-            data-aos-duration={duracionAnimacion1}
+            /*  data-aos={animacionEntrada}
+            data-aos-duration={duracionAnimacion1} */
           />
         </div>
 
         <p
           className="cuerpo-textos"
-          data-aos={animacionEntrada}
+          /* data-aos={animacionEntrada}
           data-aos-duration={duracionAnimacion1}
-          data-aos-offset="200"
+          data-aos-offset="200" */
         >
           {seccionCarousel.titulo}
         </p>
