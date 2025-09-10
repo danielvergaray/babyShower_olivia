@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDzjj8nHhTKEBAGZCQeTRgfYmr_Fon11bg",
-  authDomain: "modelo-invitacion.firebaseapp.com",
-  projectId: "modelo-invitacion",
-  storageBucket: "modelo-invitacion.firebasestorage.app",
-  messagingSenderId: "511841298505",
-  appId: "1:511841298505:web:6164764ce37b78591bf798",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
