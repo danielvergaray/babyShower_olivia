@@ -4,6 +4,7 @@ import tituloSeccionSobreEvento from "../../assets/imagenes/titulos/sub-sobreele
 import tituloSeccionRegalos from "../../assets/imagenes/titulos/sub-listaderegalos.png";
 import tituloImagenPortada from "../../assets/imagenes/titulos/Titulo.png";
 import cabeceraImagen from "../../assets/imagenes/Cabecera.png";
+import cabeceraImagenMobile from "../../assets/imagenes/Cabeceramobile.png";
 import imagen1 from "../../assets/imagenes/carousel/imagenCarousel_01.jpeg";
 import imagen2 from "../../assets/imagenes/carousel/imagenCarousel_02.jpg";
 import imagen3 from "../../assets/imagenes/carousel/imagenCarousel_03.jpeg";
@@ -38,6 +39,7 @@ const InfoContextProvider = ({ children }) => {
   const informacion = {
     seccionHome: {
       imagenCabecera: cabeceraImagen,
+      imagenCabeceraMobile: cabeceraImagenMobile,
       tituloImagenPortada: tituloImagenPortada,
       fecha: "28 de septiembre",
       nombre: "Olivia",

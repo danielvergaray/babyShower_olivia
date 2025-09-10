@@ -11,8 +11,7 @@ import Footer from "../footer/Footer";
 import { CiCircleChevDown } from "react-icons/ci";
 
 const Home = () => {
-  const { informacion, animacionEntrada, duracionAnimacion1 } =
-    useContext(InfoContext);
+  const { informacion } = useContext(InfoContext);
   const { seccionHome } = informacion;
 
   useEffect(() => {
@@ -22,15 +21,13 @@ const Home = () => {
   return (
     <>
       <section className="hero-section">
-        <div className="hero-imagenCabecera">
+        <div className="hero-imagenCabecera-desktop">
           <img src={seccionHome.imagenCabecera} alt="imagen-toldo" />
         </div>
-        <div
-          className="hero-subtitulo
-        animate__animated animate__fadeIn
-         
-        "
-        >
+        <div className="hero-imagenCabecera-mobile">
+          <img src={seccionHome.imagenCabeceraMobile} alt="imagen-toldo" />
+        </div>
+        <div className="hero-subtitulo animate__animated animate__fadeIn">
           <p className="cuerpo-textos">Bienvenida {seccionHome.nombre}</p>
         </div>
         <div
