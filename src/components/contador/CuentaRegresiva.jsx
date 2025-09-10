@@ -29,7 +29,7 @@ const CuentaRegresiva = () => {
     if (difference > 0) {
       timeLeft = {
         /* Math.floor redonde al nro mas cercano */
-        días: Math.floor(
+        dias: Math.floor(
           difference / (1000 * 60 * 60 * 24)
         ) /* 1000 milisegundos, 60 segundos, 60 minutos, 24 horas */,
         horas: String(
@@ -61,17 +61,11 @@ const CuentaRegresiva = () => {
         <div className="contador-recuadro-numero">
           <div className="contador-recuadro-digito">
             <p>
-              {" "}
-              {/* se crean etiquetas span */}
               {timeLeft[interval]}{" "}
               {/* interval es days, hours, minutes
         entonces, busca el interval dentro del objeto timeleft y lo muestra */}
             </p>
           </div>
-
-          {/* <div className="contador-recuadro-span">
-            <span></span>
-          </div> */}
         </div>
 
         <div className="contador-texto">

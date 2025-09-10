@@ -9,26 +9,32 @@ const SeccionContador = () => {
   const { seccionContador, seccionHome } = informacion;
   return (
     <>
-      <div className="contador-titulo">
+      <div
+        className="contador-titulo"
+        data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1}
+      >
         <img src={seccionHome.iconoCroissant} alt="icono-croissant" />
         <p className="cuerpo-textos">{seccionContador.titulo}</p>
         <img src={seccionHome.iconoCupcake} alt="icono-cupcake" />
       </div>
-      <div className="contador-subtitulo">
+      <div
+        className="contador-subtitulo"
+        data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1}
+        data-aos-offset="200"
+      >
         <img src={seccionHome.iconDonut} alt="icono-donut" />
-        <p
-          className="cuerpo-textos"
-
-          /* data-aos={
-            animacionEntrada
-          } data-aos-duration={duracionAnimacion1} */
-        >
-          {seccionContador.subtitulo}
-        </p>
+        <p className="cuerpo-textos">{seccionContador.subtitulo}</p>
         <img src={seccionHome.iconoPan} alt="icono-pan" />
       </div>
 
-      <div className="home-cuentaRegresiva">
+      <div
+        className="home-cuentaRegresiva"
+        data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1}
+        data-aos-offset="400"
+      >
         <CuentaRegresiva />
       </div>
     </>

@@ -106,8 +106,21 @@ const SeccionFormulario = () => {
 
       <div className="seccion-formulario-userContainer">
         <div className="seccion-formulario-titulo">
-          <p className="cuerpo-textos">{seccionForm.titulo}</p>
-          <p className="cuerpo-textos">{seccionForm.subtitulo}</p>
+          <p
+            className="cuerpo-textos"
+            data-aos={animacionEntrada}
+            data-aos-duration={duracionAnimacion1}
+          >
+            {seccionForm.titulo}
+          </p>
+          <p
+            className="cuerpo-textos"
+            data-aos={animacionEntrada}
+            data-aos-duration={duracionAnimacion1}
+            data-aos-offset="200"
+          >
+            {seccionForm.subtitulo}
+          </p>
         </div>
 
         <div className="seccion-formulario-usuario">

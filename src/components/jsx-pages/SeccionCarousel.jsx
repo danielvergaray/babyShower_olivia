@@ -8,16 +8,24 @@ const SeccionCarousel = () => {
   const { seccionCarousel, seccionHome } = informacion;
   return (
     <>
-      <div
-        className="carousel-titulo"
-        /* data-aos={animacionEntrada}
-        data-aos-duration={duracionAnimacion1} */
-      >
+      <div className="carousel-titulo">
         <div className="carousel-titulo-imagen">
-          <img src={seccionHome.iconoHornoPanes} alt="" />
+          <img
+            src={seccionHome.iconoHornoPanes}
+            alt="imagenes_panes_horno"
+            data-aos={animacionEntrada}
+            data-aos-duration={duracionAnimacion1}
+          />
         </div>
 
-        <p className="cuerpo-textos">{seccionCarousel.titulo} </p>
+        <p
+          className="cuerpo-textos"
+          data-aos={animacionEntrada}
+          data-aos-duration={duracionAnimacion1}
+          data-aos-offset="200"
+        >
+          {seccionCarousel.titulo}
+        </p>
       </div>
 
       <div className="slider">

@@ -11,7 +11,8 @@ import Footer from "../footer/Footer";
 import { CiCircleChevDown } from "react-icons/ci";
 
 const Home = () => {
-  const { informacion } = useContext(InfoContext);
+  const { informacion, animacionEntrada, duracionAnimacion1 } =
+    useContext(InfoContext);
   const { seccionHome } = informacion;
 
   useEffect(() => {
@@ -20,17 +21,18 @@ const Home = () => {
 
   return (
     <>
-      <section
-        className="hero-section" /* data-aos-easing="linear" data-aos="fade-in" data-aos-duration="2000" */
-      >
+      <section className="hero-section">
         <div className="hero-imagenCabecera">
-          <img src={seccionHome.imagenCabecera} alt="" />
+          <img src={seccionHome.imagenCabecera} alt="imagen-toldo" />
         </div>
-        <div className="hero-subtitulo">
+        <div className="hero-subtitulo" data-aos={animacionEntrada}>
           <p className="cuerpo-textos">Bienvenida {seccionHome.nombre}</p>
         </div>
         <div
-          className="hero-titulo" /* data-aos-easing="linear"data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" */
+          className="hero-titulo"
+          data-aos={animacionEntrada}
+          data-aos-duration={duracionAnimacion1}
+          data-aos-offset="200"
         >
           <img
             className="titulo-imagen"
@@ -39,7 +41,10 @@ const Home = () => {
           />
         </div>
         <div
-          className="hero-fecha" /* data-aos-easing="linear" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="1500" */
+          className="hero-fecha"
+          data-aos={animacionEntrada}
+          data-aos-duration={duracionAnimacion1}
+          data-aos-offset="350"
         >
           <p className="subtitulos-textos">{seccionHome.fecha}</p>
         </div>

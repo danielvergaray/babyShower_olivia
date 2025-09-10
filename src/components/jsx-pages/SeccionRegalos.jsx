@@ -13,17 +13,17 @@ const SeccionRegalos = () => {
     <>
       <div
         className="titulo-imagen"
-
-        /*   data-aos={animacionEntrada}
-        data-aos-duration={duracionAnimacion1} */
+        data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1}
       >
         <img src={seccionRegalos.tituloImagen} alt="" />
       </div>
 
       <div
         className="seccion-regalos-frase"
-        /*  data-aos={animacionEntrada}
-        data-aos-duration={duracionAnimacion1} */
+        data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1}
+        data-aos-offset="50"
       >
         <div>
           <img src={seccionHome.iconoCroissant} alt="icono-croissant" />
@@ -35,7 +35,12 @@ const SeccionRegalos = () => {
           <img src={seccionHome.iconoPan} alt="icono-pan" />
         </div>
       </div>
-      <div className="seccion-regalos-btn">
+      <div
+        className="seccion-regalos-btn"
+        data-aos={animacionEntrada}
+        data-aos-duration={duracionAnimacion1}
+        data-aos-offset="100"
+      >
         <Link
           to="https://baby-shower-olivia-lista-regalos.vercel.app/"
           target="_blank"

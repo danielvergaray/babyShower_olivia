@@ -23,7 +23,7 @@ const SobreEvento = () => {
         data-aos={animacionEntrada}
         data-aos-duration={duracionAnimacion1}
       >
-        <img src={seccionSobreEvento.tituloImagen} alt="" />
+        <img src={seccionSobreEvento.tituloImagen} alt="titulo" />
       </div>
 
       <Carousel
@@ -42,7 +42,12 @@ const SobreEvento = () => {
             <p className="subtitulos-textos">{seccionSobreEvento.subtitulo}</p>
           </div>
 
-          <div className="sobreEvento-fecha-hora">
+          <div
+            className="sobreEvento-fecha-hora"
+            data-aos={animacionEntrada}
+            data-aos-duration={duracionAnimacion1}
+            data-aos-offset="200"
+          >
             <div className="sobreEvento-fecha">
               <p>{seccionSobreEvento.dia}</p>
               <p className="otros-textos">{seccionSobreEvento.mes}</p>
