@@ -635,8 +635,8 @@
       .slider-track {
         display: flex;
         animation: scroll 5s linear infinite;
-        min-width: 2000px;
-        /* width: max-content; */
+        /* min-width: 2000px; */
+        width: calc(200px * 20);
         .slide {
           img {
             height: 500px;
