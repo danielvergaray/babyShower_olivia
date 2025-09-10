@@ -637,7 +637,7 @@
       .slider-track {
         display: flex;
         animation: scroll 10s linear infinite alternate;
-        width: max-content; // cantidad * 2
+        min-width: 2000px;
 
         .slide {
           img {
