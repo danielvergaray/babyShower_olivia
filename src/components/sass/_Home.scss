@@ -636,10 +636,10 @@
       .slider-track {
         display: flex;
         overflow-x: scroll;
-        width: calc(400px * 12); //Cantidad de imagenes * 2
+        width: calc(400px * 20); //Cantidad de imagenes * 2
         animation: scroll 10s linear infinite alternate;
-        width: max-content; // cantidad * 2
-        animation: scroll 15s linear infinite; // siempre hacia la izq
+        /* width: max-content;  */
+        /* animation: scroll 15s linear infinite; */ // siempre hacia la izq
 
         .slide {
           img {
