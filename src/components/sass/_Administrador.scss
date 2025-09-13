@@ -160,3 +160,19 @@
     color: $Principal-azul;
   }
 }
+
+/* VERSION MOBILE */
+
+@media (max-width: 846px) {
+  .seccion-administrador {
+    margin: 50px 30px;
+
+    .administrador-lista {
+      .administrador-submenu {
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
