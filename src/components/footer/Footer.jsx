@@ -13,11 +13,11 @@ const Footer = () => {
           <p>DESIGNED BY studioCode</p>
         </Link>
       </div>
-      <div className="link link-admin">
+      {/* <div className="link link-admin">
         <Link to="/login">
           <p>¿Eres administrador?</p>
         </Link>
-      </div>
+      </div> */}
     </>
   );
 };
