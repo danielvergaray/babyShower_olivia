@@ -29,12 +29,7 @@ const SeccionContador = () => {
         <img src={seccionHome.iconoPan} alt="icono-pan" />
       </div>
 
-      <div
-        className="home-cuentaRegresiva"
-        data-aos={animacionEntrada}
-        data-aos-duration={duracionAnimacion1}
-        data-aos-offset="400"
-      >
+      <div className="home-cuentaRegresiva">
         <CuentaRegresiva />
       </div>
     </>

@@ -7,10 +7,11 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 
 const PopUpCreator = ({ tipoModal, show, setShow, userSelected }) => {
   const {
-    deleteUsersInfoAdministrador,
+    deleteInvitadoInfo,
     setIipoPopUpFormulario,
     iconoMuffin,
     usuarioAprobado,
+    deleteRegaloInfo,
   } = useContext(InfoContext);
 
   const [isButtonListaRegalosDisabled, setIsButtonListaRegalosDisabled] =
@@ -39,27 +40,77 @@ const PopUpCreator = ({ tipoModal, show, setShow, userSelected }) => {
         keyboard={false}
         dialogClassName="modal-lg"
       >
-        {tipoModal === "administrador" ? (
-          <>
-            <Modal.Header closeButton>
-              <Modal.Title>Gestion de invitados</Modal.Title>
+        {tipoModal === "administrador-invitados" ? (
+          <div className="modal-confirmacionInvitacion">
+            <Modal.Header>
+              <p>
+                <IoCloseCircleOutline onClick={handleClose} />
+              </p>
             </Modal.Header>
+
             <Modal.Body>
-              ¿Estas seguro que deseas eliminar la informacion de{" "}
-              {userSelected.nombre}?
+              <p>¿Estas seguro que deseas eliminar la informacion de </p>
+              <p>{userSelected.nombre}?</p>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button
-                onClick={() => deleteUsersInfoAdministrador(userSelected.id)}
+            <Modal.Footer style={{ paddingTop: "10px" }}>
+              <button
+                onClick={() => {
+                  deleteInvitadoInfo(userSelected.id);
+                  handleClose();
+                }}
                 variant="primary"
               >
                 Eliminar
-              </Button>
+              </button>
             </Modal.Footer>
-          </>
+          </div>
+        ) : tipoModal === "administrador-regalos" ? (
+          <div className="modal-confirmacionInvitacion modal-adminRegalos">
+            <Modal.Header>
+              <p>
+                <IoCloseCircleOutline onClick={handleClose} />
+              </p>
+            </Modal.Header>
+
+            <Modal.Body>
+              <p>
+                ¿Estas seguro que deseas eliminar la informacion sobre este
+                regalo?
+              </p>
+              <div className="modal-adminRegalos-container">
+                <div className="modal-adminRegalos-imagen">
+                  <img src={userSelected.linkImagen} alt="imagen-regalo" />
+                </div>
+                <div className="modal-adminRegalos-info">
+                  <div>
+                    <p>Nombre regalo</p>
+                    <p>{userSelected.nombre}</p>
+                  </div>
+                  <span></span>
+                  <div>
+                    <p>Comprador</p>
+                    <p>{userSelected.comprador}</p>
+                  </div>
+                  <span></span>
+                  <div>
+                    <p>Dedicatoria</p>
+                    <p>{userSelected.dedicatoria}</p>
+                  </div>
+                </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer style={{ paddingTop: "10px" }}>
+              <button
+                onClick={() => {
+                  deleteRegaloInfo(userSelected.id);
+                  handleClose();
+                }}
+                variant="primary"
+              >
+                Eliminar
+              </button>
+            </Modal.Footer>
+          </div>
         ) : tipoModal === "usuarioYaRegistrado" ? (
           <div className="modal-confirmacionInvitacion">
             <Modal.Header>

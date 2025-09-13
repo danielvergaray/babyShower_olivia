@@ -14,8 +14,6 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 const SeccionFormulario = () => {
   const {
     informacion,
-    loading,
-    userTypedObject,
     setUserTypedObject,
     getUserDataName,
     handleEnviarFormulario,

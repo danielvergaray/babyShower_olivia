@@ -58,6 +58,43 @@
     display: flex;
     flex-direction: column;
   }
+  .modal-adminRegalos {
+    .modal-adminRegalos-container {
+      display: grid;
+      grid-template-columns: 20% 80%;
+      padding: 20px;
+      border: 1px solid $Principal-azul;
+      margin-top: 20px;
+
+      .modal-adminRegalos-imagen {
+        img {
+          width: 100%;
+          padding: 0;
+        }
+      }
+      .modal-adminRegalos-info {
+        padding: 0 10px;
+
+        div {
+          padding: 2px 0;
+          p {
+            font-size: 15px;
+            height: fit-content;
+            text-align: left;
+            line-height: 1.25;
+          }
+          span {
+            border-bottom: 2px solid gray;
+            opacity: 15%;
+          }
+          :nth-child(1) {
+            font-family: "abgyer";
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 846px) {

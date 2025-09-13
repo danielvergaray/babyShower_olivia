@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
-const DropdownComponent = ({ menuOptions, menuSelected, setMenuSelected }) => {
+const DropdownComponent = ({
+  menuOptions,
+  filterSelected,
+  setFilterSelected,
+}) => {
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
-        {menuSelected}
+        {filterSelected}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
         {menuOptions.map((option, index) => (
-          <Dropdown.Item onClick={() => setMenuSelected(option)}>
+          <Dropdown.Item key={index} onClick={() => setFilterSelected(option)}>
             {option}
           </Dropdown.Item>
         ))}

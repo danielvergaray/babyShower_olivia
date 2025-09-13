@@ -322,7 +322,7 @@ const InfoContextProvider = ({ children }) => {
 
   /* Seccion del Administrador */
 
-  const deleteUsersInfoAdministrador = (idSelected) => {
+  const deleteInvitadoInfo = (idSelected) => {
     const db = getFirestore();
     const invitadosFirebase = collection(db, "invitados");
     const buscarInvitado = query(
@@ -335,11 +335,32 @@ const InfoContextProvider = ({ children }) => {
       if (existingData.respuesta || existingData.mensaje) {
         return updateDoc(docRef, {
           respuesta: "",
-          mensaje: "",
         });
       }
     });
   };
+
+  const deleteRegaloInfo = (idSelected) => {
+    const db = getFirestore();
+    const invitadosFirebase = collection(db, "lista-regalos");
+    const buscarRegalo = query(
+      invitadosFirebase,
+      where("id", "==", idSelected)
+    );
+    getDocs(buscarRegalo).then((querySnapshot) => {
+      const docRef = querySnapshot.docs[0].ref;
+      const existingData = querySnapshot.docs[0].data();
+      if (existingData.disponible === "no") {
+        return updateDoc(docRef, {
+          disponible: "si",
+          comprador: "",
+          dedicatoria: "",
+        });
+      }
+    });
+  };
+
+  /* PARTE DEL ADMINISTRADOR */
 
   const [invitadosAdministrador, setInvitadosAdministrador] = useState([]);
 
@@ -353,6 +374,25 @@ const InfoContextProvider = ({ children }) => {
         ...doc.data(),
       }));
       setInvitadosAdministrador(listaActualizada);
+    });
+
+    // 👇 Limpia la suscripción cuando el componente se desmonta
+    return () => unsubscribe();
+  }, []);
+
+  const [listaRegalosAdministrador, setListaRegalosAdministrador] = useState(
+    []
+  );
+  useEffect(() => {
+    const db = getFirestore();
+    const invitadosRef = collection(db, "lista-regalos");
+
+    const unsubscribe = onSnapshot(invitadosRef, (querySnapshot) => {
+      const listaActualizada = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setListaRegalosAdministrador(listaActualizada);
     });
 
     // 👇 Limpia la suscripción cuando el componente se desmonta
@@ -378,7 +418,8 @@ const InfoContextProvider = ({ children }) => {
     animacionEntrada,
     duracionAnimacion1,
     invitadosAdministrador,
-    deleteUsersInfoAdministrador,
+    deleteInvitadoInfo,
+    deleteRegaloInfo,
     setInvitadosAdministrador,
     usuarioAprobado,
     verificarInvitados,
@@ -388,6 +429,8 @@ const InfoContextProvider = ({ children }) => {
     iconoMuffin,
     setUserTypedObject,
     userTypedObject,
+    listaRegalosAdministrador,
+    setListaRegalosAdministrador,
   };
 
   return (

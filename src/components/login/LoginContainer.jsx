@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 import Login from "./Login";
 
 const LoginContainer = () => {
-  const [realCredentials] = useState({
-    username: "ADMIN",
-    password: 1234,
-  });
   const [loginAllowed, setLoginAllowed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [wrongPasswordAlert, setWrongPasswordAlert] = useState(false);
@@ -18,30 +15,44 @@ const LoginContainer = () => {
 
   const navigate = useNavigate();
 
-  const handleLogin = (userCredentials) => {
+  const handleLogin = async (userCredentials) => {
     setIsLoading(true);
-    if (
-      userCredentials.username === realCredentials.username &&
-      userCredentials.password === realCredentials.password
-    ) {
-      setWrongPasswordAlert(false);
-      setTimeout(() => {
-        setIsLoading(false);
-        setLoginAllowed(true);
-        navigate("/administrador");
-      }, 1000);
-    } else {
-      setIsLoading(false);
-      setLoginAllowed(false);
-      setWrongPasswordAlert(true);
+
+    const db = getFirestore();
+    const credentialsFirebase = collection(db, "credenciales");
+
+    try {
+      const querySnapshot = await getDocs(query(credentialsFirebase));
+
+      if (!querySnapshot.empty) {
+        const existingData = querySnapshot.docs[0].data();
+        if (
+          existingData.username === userCredentials.username &&
+          existingData.password === userCredentials.password
+        ) {
+          setTimeout(() => {
+            setIsLoading(false);
+            setLoginAllowed(true);
+            navigate("/administrador");
+          }, 1000);
+        } else {
+          setIsLoading(false);
+          setLoginAllowed(false);
+          setWrongPasswordAlert(true);
+        }
+      }
+    } catch (error) {
+      console.error("Error al validar credenciales: ", error);
+    } finally {
+      /* setLoading(false); */
     }
   };
   const saveUserName = (user) => {
     setUserCredentials((prev) => ({ ...prev, username: user }));
   };
   const saveUserPass = (pass) => {
-    const claveANumero = parseInt(pass);
-    setUserCredentials((prev) => ({ ...prev, password: claveANumero }));
+    /* const claveANumero = parseInt(pass); */
+    setUserCredentials((prev) => ({ ...prev, password: pass }));
   };
 
   return (
@@ -54,6 +65,7 @@ const LoginContainer = () => {
       saveUserPass={saveUserPass}
       userCredentials={userCredentials}
       isButtonDisabled={isButtonDisabled}
+      setWrongPasswordAlert={setWrongPasswordAlert}
       setIsButtonDisabled={setIsButtonDisabled}
     />
   );

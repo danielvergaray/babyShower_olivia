@@ -3,104 +3,262 @@ import InfoContext from "../context/InfoContext";
 import { AiTwotoneDelete } from "react-icons/ai";
 import DropdownComponent from "../dropdown/DropdownComponent";
 import PopUpCreator from "../modal/PopUpCreator";
+import { Spinner } from "react-bootstrap";
 
 const Administrador = () => {
-  const { invitadosAdministrador, setInvitadosAdministrador } =
-    useContext(InfoContext);
+  const {
+    invitadosAdministrador,
+    setInvitadosAdministrador,
+    listaRegalosAdministrador,
+    setListaRegalosAdministrador,
+  } = useContext(InfoContext);
   const [show, setShow] = useState(false);
   const [userSelected, setUserSelected] = useState({});
-  const [menuSelected, setMenuSelected] = useState("Todos");
+  const [regaloSelected, setRegaloSelected] = useState({});
+  const [invitadosFilterSelected, setInvitadosFilterSelected] =
+    useState("Todos");
+  const [RegalosFilterSelected, setRegalosFilterSelected] = useState("Todos");
+  const [loading, setLoading] = useState(false);
+  const [menuSelected, setMenuSelected] = useState("INVITADOS");
 
-  const handleDelete = (userData) => {
+  const handleDelete = (data) => {
     setShow(true);
-    setUserSelected({
-      id: userData.id,
-      nombre: userData.nombre,
-    });
+
+    if (menuSelected === "INVITADOS") {
+      setUserSelected({
+        id: data.id,
+        nombre: data.nombre,
+      });
+    } else if (menuSelected === "REGALOS") {
+      setRegaloSelected(data);
+    }
   };
 
-  const dropdownMenu = [
+  const dropdownMenu = ["Todos", "Confirmados", "Ausentes", "Alfabetico"];
+  const RegalosDropdownMenu = [
     "Todos",
-    "Positivos",
-    "Negativos",
-    "Pendientes",
+    "Reservados",
+    "Disponibles",
     "Alfabetico",
   ];
 
+  /* FILTRADO DE INVITADOS */
   useEffect(
     () => {
-      if (menuSelected === "Alfabetico") {
+      if (invitadosFilterSelected === "Alfabetico") {
         const invitadosOrdenados = [...invitadosAdministrador].sort((a, b) =>
-          a.nombre.localeCompare(b.nombre)
+          (a?.nombre || "").localeCompare(b?.nombre || "")
         );
 
         setInvitadosAdministrador(invitadosOrdenados);
-      } else if (menuSelected === "Positivos") {
+      } else if (invitadosFilterSelected === "Confirmados") {
         const invitadosOrdenados = [...invitadosAdministrador].sort((a, b) =>
-          b.respuesta.localeCompare(a.respuesta)
+          (b?.respuesta || "").localeCompare(a?.respuesta || "")
         );
         setInvitadosAdministrador(invitadosOrdenados);
-      } else if (menuSelected === "Negativos") {
+      } else if (invitadosFilterSelected === "Ausentes") {
         const invitadosOrdenados = [...invitadosAdministrador].sort((b, a) =>
-          b.respuesta.localeCompare(a.respuesta)
+          (a?.respuesta || "").localeCompare(b?.respuesta || "")
         );
+        setInvitadosAdministrador(invitadosOrdenados);
+      } else {
+        const invitadosOrdenados = [...invitadosAdministrador].sort((a, b) =>
+          (a?.nombre || "").localeCompare(b?.nombre || "")
+        );
+
         setInvitadosAdministrador(invitadosOrdenados);
       }
     },
-    [menuSelected],
+    [invitadosFilterSelected],
     [invitadosAdministrador]
   );
+
+  /* Filtrado de regalos */
+  useEffect(
+    () => {
+      if (RegalosFilterSelected === "Alfabetico") {
+        const regalosOrdenados = [...listaRegalosAdministrador].sort((a, b) =>
+          (a?.nombre || "").localeCompare(b?.nombre || "")
+        );
+
+        setListaRegalosAdministrador(regalosOrdenados);
+      } else if (RegalosFilterSelected === "Disponibles") {
+        const regalosOrdenados = [...listaRegalosAdministrador].sort((a, b) =>
+          (b?.disponible || "").localeCompare(a?.disponible || "")
+        );
+        setListaRegalosAdministrador(regalosOrdenados);
+      } else if (RegalosFilterSelected === "Reservados") {
+        const regalosOrdenados = [...listaRegalosAdministrador].sort((b, a) =>
+          (b?.disponible || "").localeCompare(a?.disponible || "")
+        );
+        setListaRegalosAdministrador(regalosOrdenados);
+      } else {
+        const regalosOrdenados = [...listaRegalosAdministrador].sort((a, b) =>
+          (a?.nombre || "").localeCompare(b.nombre)
+        );
+        setListaRegalosAdministrador(regalosOrdenados);
+      }
+    },
+    [RegalosFilterSelected],
+    [invitadosAdministrador]
+  );
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 300);
+  }, [menuSelected]);
 
   return (
     <section className="seccion-administrador">
       {show && (
         <div className="administrador-popup">
           <PopUpCreator
-            userSelected={userSelected}
+            userSelected={
+              menuSelected === "INVITADOS" ? userSelected : regaloSelected
+            }
             show={show}
             setShow={setShow}
-            tipoModal="administrador"
+            tipoModal={
+              menuSelected === "INVITADOS"
+                ? "administrador-invitados"
+                : "administrador-regalos"
+            }
           />
         </div>
       )}
+      <div className="administrador-menu">
+        <div className="administrador-menu-btn">
+          <button
+            className={menuSelected === "INVITADOS" ? "btn-escogido" : ""}
+            onClick={() => {
+              setMenuSelected("INVITADOS");
+              setInvitadosFilterSelected("Todos");
+            }}
+          >
+            INVITADOS
+          </button>
+          <button
+            className={menuSelected === "REGALOS" ? "btn-escogido" : ""}
+            onClick={() => {
+              setMenuSelected("REGALOS");
+              setRegalosFilterSelected("Todos");
+            }}
+          >
+            REGALOS
+          </button>
+        </div>
 
-      <div className="administrador">
-        <h1>Lista invitados</h1>
-        <div>
+        <div className="administrador-dropdown">
           <DropdownComponent
-            menuSelected={menuSelected}
-            setMenuSelected={setMenuSelected}
-            menuOptions={dropdownMenu}
+            filterSelected={
+              menuSelected === "INVITADOS"
+                ? invitadosFilterSelected
+                : RegalosFilterSelected
+            }
+            setFilterSelected={
+              menuSelected === "INVITADOS"
+                ? setInvitadosFilterSelected
+                : setRegalosFilterSelected
+            }
+            menuOptions={
+              menuSelected === "INVITADOS" ? dropdownMenu : RegalosDropdownMenu
+            }
           />
         </div>
-        <div className="administrador-menu">
-          <p>Nombre</p>
-          <p>Respuesta</p>
-          <p>Mensaje</p>
-          <p>Actions</p>
-        </div>
-        {invitadosAdministrador.map((invitado, index) => (
-          <>
-            <div className="administrador-invitado" key={index}>
-              <p>{invitado.nombre}</p>
-              <p>{invitado.respuesta !== "" ? invitado.respuesta : "-"}</p>
-              <p>{invitado.mensaje !== "" ? invitado.mensaje : "-"}</p>
-
-              <p
-                onClick={() =>
-                  handleDelete({
-                    id: invitado.id,
-                    nombre: invitado.nombre,
-                  })
-                }
-              >
-                <AiTwotoneDelete />
-              </p>
-            </div>
-            <span></span>
-          </>
-        ))}
       </div>
+
+      {loading ? (
+        <div className="spinner">
+          <Spinner />
+        </div>
+      ) : menuSelected === "INVITADOS" ? (
+        <div className="administrador-lista">
+          <h1>Lista invitados</h1>
+
+          <div className="administrador-submenu">
+            <p>Nombre</p>
+            <p>Respuesta</p>
+            <p>Eliminar</p>
+          </div>
+          <span></span>
+          {invitadosAdministrador.map((invitado, index) => (
+            <>
+              <div className="administrador-fila" key={index}>
+                <p>{invitado.nombre}</p>
+                <p>{invitado.respuesta !== "" ? invitado.respuesta : "-"}</p>
+
+                {invitado.respuesta !== "" ? (
+                  <p
+                    className="icono-borrar"
+                    onClick={() =>
+                      handleDelete({
+                        id: invitado.id,
+                        nombre: invitado.nombre,
+                      })
+                    }
+                  >
+                    <AiTwotoneDelete />
+                  </p>
+                ) : (
+                  <p className="icono-borrar apagado">
+                    <AiTwotoneDelete />
+                  </p>
+                )}
+              </div>
+              <span></span>
+            </>
+          ))}
+        </div>
+      ) : (
+        <div className="administrador-lista">
+          <h1>Lista regalos</h1>
+          <div className="administrador-submenu">
+            <p></p>
+            <p>Nombre</p>
+            <p>Estado</p>
+            <p>Comprador</p>
+            <p>Dedicatoria</p>
+            <p>Eliminar</p>
+          </div>
+          <span></span>
+          {listaRegalosAdministrador.map((regalo, index) => (
+            <>
+              <div className="administrador-fila seccionRegalos" key={index}>
+                <div className="seccionRegalos-imagenes">
+                  <img src={regalo.linkImagen} alt="imagen-regalo" />
+                </div>
+                <div className="seccionRegalos-info">
+                  <p>{regalo.nombre}</p>
+                  <p
+                    className={
+                      regalo.disponible === "no" ? "regalo-reservado" : ""
+                    }
+                  >
+                    {regalo.disponible === "si" ? "DISPONIBLE" : "RESERVADO"}
+                  </p>
+                  <p>{regalo.comprador !== "" ? regalo.comprador : "-"}</p>
+
+                  <p>{regalo.dedicatoria !== "" ? regalo.dedicatoria : "-"}</p>
+                  {regalo.disponible === "no" ? (
+                    <p
+                      className="icono-borrar"
+                      onClick={() => handleDelete(regalo)}
+                    >
+                      <AiTwotoneDelete />
+                    </p>
+                  ) : (
+                    <p className="icono-borrar apagado">
+                      <AiTwotoneDelete />
+                    </p>
+                  )}
+                </div>
+              </div>
+              <span></span>
+            </>
+          ))}
+        </div>
+      )}
     </section>
   );
 };
